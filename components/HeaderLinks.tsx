@@ -35,6 +35,16 @@ const HeaderLinks = (props) => {
         </ListItem>;
       })}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
+      {props.categories.map(({ id, title }) => {
+        <ListItem className={classes.listItem}>
+          <Link as={`/page/${id}`} href="/page/[id]">
+            <Button variant="text" className={classes.navLink}>
+              <span className={classes.listItemText}>{title}</span>
+            </Button>
+          </Link>
+        </ListItem>;
+      })}
+      <ListItem className={clsx(classes.listItem, classes.divider)} />
       <ListItem className={classes.listItem}>
         <Tooltip
           title="Home Assistant Community"

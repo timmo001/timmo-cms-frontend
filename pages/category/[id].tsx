@@ -1,23 +1,46 @@
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Articles from "../../components/Articles";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 import {
   getCategory,
   getCategories,
   getGeneral,
-  getPages,
+  getPages,, getApiMediaUrl
 } from "../../lib/api";
 import Layout from "../../components/Layout";
+import Parallax from "../../components/Parallax";
+import styles from "../../assets/jss/components/layout";
+
+const useStyles = makeStyles(styles);
 
 const Category = ({ category, categories, general, pages }) => {
+  const classes = useStyles();
+
   return (
-    <Layout categories={categories} general={general} pages={pages}>
-      <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>{category.name}</h1>
-          <Articles articles={category.articles} />
-        </div>
-      </div>
+    <Layout
+      classes={classes}
+      categories={categories}
+      general={general}
+      pages={pages}
+    >
+      <Parallax small filter image={getApiMediaUrl(category.image.url)} />
+      <Container
+        className={classes.mainRaised}
+        component="article"
+        maxWidth="xl"
+      >
+        <Card>
+          <CardContent>
+            <Typography variant="h3">{category.name}</Typography>
+            <Articles articles={category.articles} />
+          </CardContent>
+        </Card>
+      </Container>
     </Layout>
   );
 };

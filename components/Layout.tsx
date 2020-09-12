@@ -48,14 +48,14 @@ const Layout = (props) => {
         <CssBaseline />
         <Header
           {...props}
-          color="transparent"
           brand="Timmo"
-          rightLinks={<HeaderLinks {...props} />}
-          fixed
           changeColorOnScroll={{
             height: 200,
             color: "primary",
           }}
+          color="transparent"
+          fixed
+          rightLinks={<HeaderLinks {...props} />}
         />
         {props.children}
         {props.general.footer_content ? (

@@ -21,20 +21,15 @@ import styles from "../assets/jss/components/layout";
 
 const useStyles = makeStyles(styles);
 
-const Home = ({ articles, categories, general, homepage, pages }) => {
+const Home = (props) => {
   const classes = useStyles();
 
   return (
-    <Layout
-      classes={classes}
-      categories={categories}
-      general={general}
-      pages={pages}
-    >
+    <Layout {...props} classes={classes}>
       <Parallax
         small
         filter
-        image={getApiMediaUrl(homepage.header_media.url)}
+        image={getApiMediaUrl(props.homepage.header_media.url)}
       />
       <Container
         className={classes.mainRaised}
@@ -48,12 +43,12 @@ const Home = ({ articles, categories, general, homepage, pages }) => {
               align="center"
               variant="h4"
             >
-              {homepage.welcome_message}
+              {props.homepage.welcome_message}
             </Typography>
             <Typography align="center" variant="h3">
-              {homepage.articles_heading}
+              {props.homepage.articles_heading}
             </Typography>
-            <Articles articles={articles.slice(0, 6)} />
+            <Articles articles={props.articles.slice(0, 6)} />
           </CardContent>
         </Card>
       </Container>
