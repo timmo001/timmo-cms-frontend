@@ -1,0 +1,16 @@
+html,
+body {
+  min-height: 100%;
+}
+body {
+  background: rgba(250, 250, 250, 1);
+}
+
+footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: rgba(200, 200, 200, 0.8);
+  color: #000000;
+}
