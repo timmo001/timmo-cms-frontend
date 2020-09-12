@@ -114,9 +114,12 @@ export async function getGeneral() {
   const data = await fetchAPI(`query General {
     general {
       footer_content
+      header_media {
+        url
+        alternativeText
+      }
     }
-  }
-  `);
+  }`);
   return data.general;
 }
 

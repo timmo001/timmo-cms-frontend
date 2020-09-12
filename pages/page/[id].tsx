@@ -1,44 +1,79 @@
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import React from "react";
+import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
-import { getCategories, getGeneral, getPage, getPages } from "../../lib/api";
+import {
+  getApiMediaUrl,
+  getCategories,
+  getGeneral,
+  getPage,
+  getPages,
+} from "../../lib/api";
 import Layout from "../../components/Layout";
+import Parallax from "../../components/Parallax";
+import styles from "../../assets/jss/components/layout";
 
-const Page = ({ categories, general, page, pages }) => {
+const useStyles = makeStyles(styles);
+
+const Page = (props) => {
+  const classes = useStyles();
+
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 2000,
-    slidesToShow: page.slider_slides || 3,
-    slidesToScroll: page.slider_slides || 3,
+    slidesToShow: props.page.slider_slides || 3,
+    slidesToScroll: props.page.slider_slides || 3,
   };
   return (
-    <Layout categories={categories} general={general} pages={pages}>
-      <div id="page-content" className="uk-container uk-container-medium">
-        <h1>{page.title}</h1>
-        <ReactMarkdown source={page.content} escapeHtml={false} />
-        <div className="uk-flex-center uk-flex-middle">
-          <Slider {...sliderSettings}>
-            {page.slider_media.map(({ url, alternativeText }, index) => (
-              <img
-                key={index}
-                className="slider-image"
-                src={`${
-                  process.env.NODE_ENV !== "production"
-                    ? process.env.API_URL
-                    : ""
-                }${url}`}
-                alt={alternativeText}
-              />
-            ))}
-          </Slider>
-        </div>
-        <p>
-          <br />
-          <br />
-        </p>
-      </div>
+    <Layout {...props} classes={classes}>
+      <Parallax
+        small
+        filter
+        image={getApiMediaUrl(
+          props.page.header_media
+            ? props.page.header_media.url
+            : props.general.header_media.url
+        )}
+      />
+      <Container
+        className={classes.mainRaised}
+        component="article"
+        maxWidth="xl"
+      >
+        <Card>
+          <CardContent>
+            <Typography variant="h3">{props.page.title}</Typography>
+            <ReactMarkdown source={props.page.content} escapeHtml={false} />
+            {props.page.slider_media ? (
+              <Slider {...sliderSettings}>
+                {props.page.slider_media.map(
+                  ({ url, alternativeText }, index) => (
+                    <img
+                      key={index}
+                      className="slider-image"
+                      src={`${
+                        process.env.NODE_ENV !== "production"
+                          ? process.env.API_URL
+                          : ""
+                      }${url}`}
+                      alt={alternativeText}
+                    />
+                  )
+                )}
+              </Slider>
+            ) : (
+              ""
+            )}
+          </CardContent>
+        </Card>
+      </Container>
     </Layout>
   );
 };

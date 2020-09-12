@@ -22,16 +22,11 @@ import styles from "../../assets/jss/components/layout";
 
 const useStyles = makeStyles(styles);
 
-const Article = ({ article, categories, general, pages }) => {
+const Article = (props) => {
   const classes = useStyles();
 
   return (
-    <Layout
-      classes={classes}
-      categories={categories}
-      general={general}
-      pages={pages}
-    >
+    <Layout {...props} classes={classes}>
       <Parallax small filter image={getApiMediaUrl(article.image.url)} />
       <Container
         className={classes.mainRaised}

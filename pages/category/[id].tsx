@@ -19,20 +19,15 @@ import styles from "../../assets/jss/components/layout";
 
 const useStyles = makeStyles(styles);
 
-const Category = ({ category, categories, general, pages }) => {
+const Category = (props) => {
   const classes = useStyles();
 
   return (
-    <Layout
-      classes={classes}
-      categories={categories}
-      general={general}
-      pages={pages}
-    >
+    <Layout {...props} classes={classes}>
       <Parallax
         small
         filter
-        image={getApiMediaUrl(category.header_media.url)}
+        image={getApiMediaUrl(props.category.header_media.url)}
       />
       <Container
         className={classes.mainRaised}
@@ -42,9 +37,9 @@ const Category = ({ category, categories, general, pages }) => {
         <Card>
           <CardContent>
             <Typography align="center" variant="h3" gutterBottom>
-              {category.name}
+              {props.category.name}
             </Typography>
-            <Articles articles={category.articles} />
+            <Articles articles={props.category.articles} />
           </CardContent>
         </Card>
       </Container>
