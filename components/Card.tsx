@@ -1,37 +1,47 @@
 import React from "react";
 import Moment from "react-moment";
 import Link from "next/link";
+import { makeStyles } from "@material-ui/core/styles";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import MuiCard from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl } from "../lib/api";
+import styles from "../assets/jss/components/card";
+
+const useStyles = makeStyles(styles);
 
 const Card = ({ article }) => {
-  const imageUrl = article.image ? getApiMediaUrl(article.image.url) : "";
+  const classes = useStyles();
+
   return (
     <Link as={`/article/${article.id}`} href="/article/[id]">
-      <a className="uk-link-reset">
-        <div className="uk-card uk-card-muted uk-flex uk-flex-column uk-flex-between">
-          <div className="uk-flex-1" />
-          <div className="uk-card-media-bottom">
-            <img
-              src={imageUrl}
-              alt={article.image?.alternativeText}
-              height="100"
+      <ButtonBase>
+        <MuiCard className={classes.card} elevation={2} square={false}>
+          {article.image ? (
+            <CardMedia
+              className={classes.media}
+              image={getApiMediaUrl(article.image.url)}
+              title={article.image.alternativeText}
             />
-          </div>
-          <div className="uk-flex-1" />
-          <div className="uk-card-body">
-            <p id="category" className="uk-text-uppercase">
+          ) : (
+            ""
+          )}
+          <CardContent>
+            <Typography variant="button" color="textSecondary">
               {article.category?.name}
-            </p>
-            <p id="title" className="uk-text-large">
+            </Typography>
+            <Typography variant="h4" color="textPrimary" gutterBottom>
               {article.title}
-            </p>
-            <p id="subtitle" className="uk-text-xsmall">
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
               <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
-            </p>
-          </div>
-        </div>
-      </a>
+            </Typography>
+          </CardContent>
+        </MuiCard>
+      </ButtonBase>
     </Link>
   );
 };

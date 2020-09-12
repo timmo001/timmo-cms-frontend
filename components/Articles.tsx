@@ -1,5 +1,7 @@
 import React from "react";
 import moment from "moment";
+import Grid from "@material-ui/core/Grid";
+
 import Card from "./Card";
 
 const Articles = ({ articles }) => {
@@ -8,11 +10,19 @@ const Articles = ({ articles }) => {
   );
 
   return (
-    <div className="uk-grid uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-match">
+    <Grid
+      container
+      direction="row"
+      alignContent="justify"
+      alignItems="center"
+      justify="space-around"
+    >
       {articles.map((article, index) => (
-        <Card key={index} article={article} key={`article__${article.id}`} />
+        <Grid key={index} item>
+          <Card article={article} key={`article__${article.id}`} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 
