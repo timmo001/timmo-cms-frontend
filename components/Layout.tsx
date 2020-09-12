@@ -23,6 +23,16 @@ let theme = createMuiTheme({
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
+  overrides: {
+    MuiCardContent: {
+      root: {
+        padding: "16px 32px",
+        "&:last-child": {
+          paddingBottom: 16,
+        },
+      },
+    },
+  },
 });
 theme = responsiveFontSizes(theme);
 
@@ -44,7 +54,7 @@ const Layout = (props) => {
           fixed
           changeColorOnScroll={{
             height: 200,
-            color: theme.palette.primary.main,
+            color: "primary",
           }}
         />
         {props.children}

@@ -32,11 +32,7 @@ const Article = ({ article, categories, general, pages }) => {
       general={general}
       pages={pages}
     >
-      <Parallax
-        small
-        filter
-        image={getApiMediaUrl(article.image.url)}
-      />
+      <Parallax small filter image={getApiMediaUrl(article.image.url)} />
       <Container
         className={classes.mainRaised}
         component="article"

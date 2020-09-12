@@ -38,7 +38,6 @@ const HeaderLinks = (props) => {
       <ListItem className={classes.listItem}>
         <Tooltip
           title="Home Assistant Community"
-          placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
@@ -56,11 +55,7 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip
-          title="Twitter"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
+        <Tooltip title="Twitter" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
@@ -76,11 +71,7 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip
-          title="Twitch"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
+        <Tooltip title="Twitch" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
@@ -96,11 +87,7 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip
-          title="GitHub"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
+        <Tooltip title="GitHub" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
