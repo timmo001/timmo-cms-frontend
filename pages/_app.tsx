@@ -1,9 +1,12 @@
+import { AppProps } from "next/app";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "../assets/css/style.css";
 
-const App = ({ Component, pageProps }) => <Component {...pageProps} />;
+function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
+}
 
 export default App;

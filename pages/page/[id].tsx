@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
 
@@ -54,15 +55,15 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async (context) => {
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
-  const page = await getPage(params.id);
+  const page = await getPage(context.params.id);
   const pages = (await getPages()) || [];
   return {
     props: { categories, general, page, pages },
     unstable_revalidate: 1,
   };
-}
+};
 
 export default Page;

@@ -1,4 +1,6 @@
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import Articles from "../../components/articles";
+
 import {
   getCategory,
   getCategories,
@@ -32,8 +34,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const category = (await getCategory(params.id)) || [];
+export const getStaticProps: GetStaticProps = async (context) => {
+  const category = (await getCategory(context.params.id)) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
   const pages = (await getPages()) || [];
@@ -41,6 +43,6 @@ export async function getStaticProps({ params }) {
     props: { category, categories, general, pages },
     unstable_revalidate: 1,
   };
-}
+};
 
 export default Category;

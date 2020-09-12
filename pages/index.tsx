@@ -1,4 +1,5 @@
 import React from "react";
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import Slider from "react-slick";
 
 import Articles from "../components/articles-homepage";
@@ -33,7 +34,7 @@ const Home = ({ articles, categories, general, homepage, pages }) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
@@ -43,6 +44,6 @@ export async function getStaticProps() {
     props: { articles, categories, general, homepage, pages },
     unstable_revalidate: 1,
   };
-}
+};
 
 export default Home;

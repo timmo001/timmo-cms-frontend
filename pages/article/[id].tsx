@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 
@@ -38,7 +39,7 @@ const Article = ({ article, categories, general, pages }) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const articles = (await getArticles()) || [];
   return {
     paths: articles.map((article) => ({
@@ -50,8 +51,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const article = (await getArticle(params.id)) || [];
+export const getStaticProps: GetStaticProps = async (context) => {
+  const article = (await getArticle(context.params.id)) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
   const pages = (await getPages()) || [];
@@ -59,6 +60,6 @@ export async function getStaticProps({ params }) {
     props: { article, categories, general, pages },
     unstable_revalidate: 1,
   };
-}
+};
 
 export default Article;
