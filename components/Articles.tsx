@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import Card from "./card";
+import Card from "./Card";
 
 const Articles = ({ articles }) => {
   articles.sort((a, b) =>

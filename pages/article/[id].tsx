@@ -1,40 +1,57 @@
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import React from "react";
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 import {
-  getArticles,
+  getApiMediaUrl,
   getArticle,
+  getArticles,
   getCategories,
   getGeneral,
   getPages,
 } from "../../lib/api";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
+import Parallax from "../../components/Parallax";
+import styles from "../../assets/jss/components/layout";
+
+const useStyles = makeStyles(styles);
 
 const Article = ({ article, categories, general, pages }) => {
-  const imageUrl = article.image
-    ? article.image.url.startsWith("/")
-      ? process.env.API_URL + article.image.url
-      : article.image.url
-    : "";
-  return (
-    <Layout categories={categories} general={general} pages={pages}>
-      <div
-        id="banner"
-        className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-        data-src={imageUrl}
-        data-srcset={imageUrl}
-        data-uk-img
-      >
-        <h1>{article.title}</h1>
-      </div>
+  const classes = useStyles();
 
-      <div id="article-content" className="uk-container uk-container-small">
-        <h5>
-          <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
-        </h5>
-        <ReactMarkdown source={article.content} escapeHtml={false} />
-      </div>
+  return (
+    <Layout
+      classes={classes}
+      categories={categories}
+      general={general}
+      pages={pages}
+    >
+      <Parallax
+        small
+        filter
+        image={getApiMediaUrl(article.image.url)}
+      />
+      <Container
+        className={classes.mainRaised}
+        component="article"
+        maxWidth="xl"
+      >
+        <Card>
+          <CardContent>
+            <Typography variant="h3">{article.title}</Typography>
+            <h5>
+              <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+            </h5>
+            <ReactMarkdown source={article.content} escapeHtml={false} />
+          </CardContent>
+        </Card>
+      </Container>
     </Layout>
   );
 };
@@ -49,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: false,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const article = (await getArticle(context.params.id)) || [];

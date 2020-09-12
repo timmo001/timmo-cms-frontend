@@ -19,6 +19,12 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data;
 }
 
+export function getApiMediaUrl(url: string): string {
+  return `${
+    process.env.NODE_ENV !== "production" ? process.env.API_URL : ""
+  }${url}`;
+}
+
 export async function getArticles() {
   const data = await fetchAPI(`query Articles {
     articles {
@@ -118,21 +124,20 @@ export async function getHomepage() {
   const data = await fetchAPI(`query Homepage {
     homepage {
       id
-      logo {
+      articles_heading
+      header_media {
         url
         alternativeText
       }
-      welcome_message
-      articles_heading
       showcase_heading
       showcase_media {
         url
         alternativeText
       }
       showcase_slides
+      welcome_message
     }
   }`);
-  console.log(data);
   return data.homepage;
 }
 

@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
 
 import { getCategories, getGeneral, getPage, getPages } from "../../lib/api";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 
 const Page = ({ categories, general, page, pages }) => {
   const sliderSettings = {

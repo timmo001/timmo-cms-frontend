@@ -2,12 +2,10 @@ import React from "react";
 import Moment from "react-moment";
 import Link from "next/link";
 
+import { getApiMediaUrl } from "../lib/api";
+
 const Card = ({ article }) => {
-  const imageUrl = article.image
-    ? article.image.url.startsWith("/")
-      ? process.env.API_URL + article.image.url
-      : article.image.url
-    : "";
+  const imageUrl = article.image ? getApiMediaUrl(article.image.url) : "";
   return (
     <Link as={`/article/${article.id}`} href="/article/[id]">
       <a className="uk-link-reset">

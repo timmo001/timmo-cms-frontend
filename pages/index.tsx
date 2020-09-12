@@ -1,40 +1,67 @@
 import React from "react";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
-import Slider from "react-slick";
+import { GetStaticProps } from "next";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
-import Articles from "../components/articles-homepage";
-import Layout from "../components/layout";
 import {
+  getApiMediaUrl,
   getArticles,
   getCategories,
   getGeneral,
   getHomepage,
   getPages,
 } from "../lib/api";
+import Articles from "../components/Articles";
+import Layout from "../components/Layout";
+import Parallax from "../components/Parallax";
+import styles from "../assets/jss/components/layout";
 
-const sliderSettingsProfile = {
-  dots: true,
-  infinite: true,
-  speed: 2000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
+const useStyles = makeStyles(styles);
 
 const Home = ({ articles, categories, general, homepage, pages }) => {
-  // const sliderSettingsShowcase = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 2000,
-  //   slidesToShow: homepage.showcase_slides || 3,
-  //   slidesToScroll: homepage.showcase_slides || 3,
-  // };
+  const classes = useStyles();
 
   return (
-    <Layout categories={categories} general={general} pages={pages}></Layout>
+    <Layout
+      classes={classes}
+      categories={categories}
+      general={general}
+      pages={pages}
+    >
+      <Parallax
+        small
+        filter
+        image={getApiMediaUrl(homepage.header_media.url)}
+      />
+      <Container
+        className={classes.mainRaised}
+        component="article"
+        maxWidth="xl"
+      >
+        <Card>
+          <CardContent>
+            <Typography
+              className={classes.welcomeMessage}
+              align="center"
+              variant="h4"
+            >
+              {homepage.welcome_message}
+            </Typography>
+            <Typography align="center" variant="h3">
+              {homepage.articles_heading}
+            </Typography>
+            <Articles articles={articles.slice(0, 6)} />
+          </CardContent>
+        </Card>
+      </Container>
+    </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
