@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next";
 import Articles from "../../components/Articles";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
@@ -15,9 +14,7 @@ import {
 } from "../../lib/api";
 import Layout from "../../components/Layout";
 import Parallax from "../../components/Parallax";
-import styles from "../../assets/jss/components/layout";
-
-const useStyles = makeStyles(styles);
+import useStyles from "../../assets/jss/components/layout";
 
 const Category = (props) => {
   const classes = useStyles();

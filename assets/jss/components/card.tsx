@@ -1,4 +1,6 @@
-const cardStyle = {
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+const cardStyle = makeStyles((_theme: Theme) => ({
   button: {
     width: "100%",
   },
@@ -9,6 +11,6 @@ const cardStyle = {
     height: 320,
     backgroundSize: "contain",
   },
-};
+}));
 
 export default cardStyle;

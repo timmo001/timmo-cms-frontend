@@ -1,4 +1,5 @@
-async function fetchAPI(query, { variables } = {}) {
+async function fetchAPI(query, props?): Promise<any> {
+  const variables = props?.variables;
   const res = await fetch(`${process.env.API_URL}/graphql`, {
     method: "POST",
     headers: {

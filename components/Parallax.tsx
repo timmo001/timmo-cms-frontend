@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "../assets/jss/components/parallax";
-
-const useStyles = makeStyles(styles);
+import useStyles from "../assets/jss/components/parallax";
 
 export default function Parallax(props) {
   const [transform, setTransform] = useState<string>();

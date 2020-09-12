@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,13 +9,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@mdi/react";
 import { mdiGithub, mdiTwitter, mdiHomeAssistant, mdiTwitch } from "@mdi/js";
 
-import styles from "../assets/jss/components/headerLinks";
-
-const useStyles = makeStyles(styles);
+import useStyles from "../assets/jss/components/headerLinks";
 
 const HeaderLinks = (props) => {
-  console.log(props);
-
   const classes = useStyles();
   const theme = useTheme();
   return (

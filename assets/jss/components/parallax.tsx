@@ -1,4 +1,6 @@
-const parallaxStyle = {
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+const parallaxStyle = makeStyles((_theme: Theme) => ({
   parallax: {
     height: "90vh",
     maxHeight: "1000px",
@@ -30,6 +32,6 @@ const parallaxStyle = {
   small: {
     height: "380px",
   },
-};
+}));
 
 export default parallaxStyle;

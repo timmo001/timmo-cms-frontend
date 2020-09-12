@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
 import Drawer from "@material-ui/core/Drawer";
@@ -10,9 +9,7 @@ import Menu from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import styles from "../assets/jss/components/header";
-
-const useStyles = makeStyles(styles);
+import useStyles from "../assets/jss/components/header";
 
 const Header = (props) => {
   const classes = useStyles();

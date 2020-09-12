@@ -1,7 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -9,9 +8,7 @@ import MuiCard from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl } from "../lib/api";
-import styles from "../assets/jss/components/card";
-
-const useStyles = makeStyles(styles);
+import useStyles from "../assets/jss/components/card";
 
 const Card = ({ article }) => {
   const classes = useStyles();
