@@ -6,7 +6,7 @@ const cardStyle = {
     width: "100%",
   },
   media: {
-    height: 180,
+    height: 320,
     backgroundSize: "contain",
   },
 };
