@@ -33,7 +33,7 @@ const Card = ({ article }) => {
             <Typography variant="button" color="textSecondary">
               {article.category?.name}
             </Typography>
-            <Typography variant="h4" color="textPrimary" gutterBottom>
+            <Typography variant="h4" color="textPrimary">
               {article.title}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">

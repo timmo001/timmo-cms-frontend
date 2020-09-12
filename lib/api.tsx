@@ -84,6 +84,10 @@ export async function getCategory(id) {
     category(id: $id) {
       id
       name
+      header_media {
+        url
+        alternativeText
+      }
       articles {
         id
         title
@@ -109,10 +113,6 @@ export async function getCategory(id) {
 export async function getGeneral() {
   const data = await fetchAPI(`query General {
     general {
-      logo {
-        url
-        alternativeText
-      }
       footer_content
     }
   }

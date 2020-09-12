@@ -45,7 +45,7 @@ const Home = (props) => {
             >
               {props.homepage.welcome_message}
             </Typography>
-            <Typography align="center" variant="h3">
+            <Typography align="center" variant="h3" gutterBottom>
               {props.homepage.articles_heading}
             </Typography>
             <Articles articles={props.articles.slice(0, 6)} />

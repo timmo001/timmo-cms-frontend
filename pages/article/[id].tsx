@@ -41,9 +41,9 @@ const Article = ({ article, categories, general, pages }) => {
         <Card>
           <CardContent>
             <Typography variant="h3">{article.title}</Typography>
-            <h5>
+            <Typography variant="subtitle1" color="textSecondary">
               <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
-            </h5>
+            </Typography>
             <ReactMarkdown source={article.content} escapeHtml={false} />
           </CardContent>
         </Card>

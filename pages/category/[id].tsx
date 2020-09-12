@@ -7,10 +7,11 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
 import {
-  getCategory,
+  getApiMediaUrl,
   getCategories,
+  getCategory,
   getGeneral,
-  getPages,, getApiMediaUrl
+  getPages,
 } from "../../lib/api";
 import Layout from "../../components/Layout";
 import Parallax from "../../components/Parallax";
@@ -28,7 +29,11 @@ const Category = ({ category, categories, general, pages }) => {
       general={general}
       pages={pages}
     >
-      <Parallax small filter image={getApiMediaUrl(category.image.url)} />
+      <Parallax
+        small
+        filter
+        image={getApiMediaUrl(category.header_media.url)}
+      />
       <Container
         className={classes.mainRaised}
         component="article"
@@ -36,7 +41,9 @@ const Category = ({ category, categories, general, pages }) => {
       >
         <Card>
           <CardContent>
-            <Typography variant="h3">{category.name}</Typography>
+            <Typography align="center" variant="h3" gutterBottom>
+              {category.name}
+            </Typography>
             <Articles articles={category.articles} />
           </CardContent>
         </Card>
