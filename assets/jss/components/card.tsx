@@ -1,7 +1,9 @@
 const cardStyle = {
+  button: {
+    width: "100%",
+  },
   card: {
-    minWidth: 240,
-    margin: 8,
+    width: "100%",
   },
   media: {
     height: 180,

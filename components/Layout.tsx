@@ -24,6 +24,11 @@ let theme = createMuiTheme({
     tonalOffset: 0.2,
   },
   overrides: {
+    MuiCard: {
+      root: {
+        margin: 8,
+      },
+    },
     MuiCardContent: {
       root: {
         padding: "24px 32px",

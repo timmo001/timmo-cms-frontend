@@ -18,7 +18,7 @@ const Card = ({ article }) => {
 
   return (
     <Link as={`/article/${article.id}`} href="/article/[id]">
-      <ButtonBase>
+      <ButtonBase className={classes.button}>
         <MuiCard className={classes.card} elevation={2} square={false}>
           {article.image ? (
             <CardMedia

@@ -12,7 +12,7 @@ const Articles = ({ articles }) => {
   return (
     <Grid container direction="row" alignItems="center" justify="space-around">
       {articles.map((article, index) => (
-        <Grid key={index} item>
+        <Grid key={index} item xs>
           <Card article={article} key={`article__${article.id}`} />
         </Grid>
       ))}
