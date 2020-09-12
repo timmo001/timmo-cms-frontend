@@ -14,6 +14,8 @@ import styles from "../assets/jss/components/headerLinks";
 const useStyles = makeStyles(styles);
 
 const HeaderLinks = (props) => {
+  console.log(props);
+
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -25,25 +27,25 @@ const HeaderLinks = (props) => {
           </Button>
         </Link>
       </ListItem>
-      {props.pages.map(({ id, title }) => {
-        <ListItem className={classes.listItem}>
+      {props.pages.map(({ id, title }) => (
+        <ListItem key={id} className={classes.listItem}>
           <Link as={`/page/${id}`} href="/page/[id]">
             <Button variant="text" className={classes.navLink}>
               <span className={classes.listItemText}>{title}</span>
             </Button>
           </Link>
-        </ListItem>;
-      })}
+        </ListItem>
+      ))}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
-      {props.categories.map(({ id, title }) => {
-        <ListItem className={classes.listItem}>
-          <Link as={`/page/${id}`} href="/page/[id]">
+      {props.categories.map(({ id, name }) => (
+        <ListItem key={id} className={classes.listItem}>
+          <Link as={`/category/${id}`} href="/category/[id]">
             <Button variant="text" className={classes.navLink}>
-              <span className={classes.listItemText}>{title}</span>
+              <span className={classes.listItemText}>{name}</span>
             </Button>
           </Link>
-        </ListItem>;
-      })}
+        </ListItem>
+      ))}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
       <ListItem className={classes.listItem}>
         <Tooltip
