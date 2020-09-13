@@ -7,7 +7,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@mdi/react";
-import { mdiGithub, mdiTwitter, mdiHomeAssistant, mdiTwitch } from "@mdi/js";
+import {
+  mdiGithub,
+  mdiTwitter,
+  mdiHomeAssistant,
+  mdiTwitch,
+  mdiEmail,
+} from "@mdi/js";
 
 import useStyles from "../assets/jss/components/headerLinks";
 
@@ -109,6 +115,16 @@ const HeaderLinks = (props) => {
             />
           </Button>
         </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          variant="text"
+          className={classes.navLink}
+          href="mailto:contact@timmo.xyz"
+          target="_blank"
+        >
+          <Icon color={theme.palette.text.primary} path={mdiEmail} size={1} />
+        </Button>
       </ListItem>
     </List>
   );
