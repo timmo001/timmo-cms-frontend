@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
@@ -13,8 +13,9 @@ import useStyles from "../assets/jss/components/header";
 
 const Header = (props) => {
   const classes = useStyles();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  React.useEffect(() => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
     if (props.changeColorOnScroll) {
       window.addEventListener("scroll", headerColorChange);
     }
@@ -23,10 +24,12 @@ const Header = (props) => {
         window.removeEventListener("scroll", headerColorChange);
       }
     };
-  });
+  }, []);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const headerColorChange = () => {
     const { color, changeColorOnScroll } = props;
     const windowsScrollTop = window.pageYOffset;
@@ -46,30 +49,23 @@ const Header = (props) => {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   };
-  const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
-  const appBarClasses = clsx({
-    [classes.appBar]: true,
-    [classes[color]]: color,
-    [classes.absolute]: absolute,
-    [classes.fixed]: fixed,
-  });
+  const { color, rightLinks, brand, fixed, absolute } = props;
   return (
-    <AppBar className={appBarClasses} color={color}>
+    <AppBar
+      className={clsx({
+        [classes.appBar]: true,
+        [classes[color]]: color,
+        [classes.absolute]: absolute,
+        [classes.fixed]: fixed,
+      })}
+      color={color}
+    >
       <Container maxWidth="xl">
         <Toolbar className={classes.container}>
-          {leftLinks !== undefined ? (
-            <Typography className={classes.title}>{brand}</Typography>
-          ) : null}
           <div className={classes.flex}>
-            {leftLinks !== undefined ? (
-              <Hidden smDown implementation="css">
-                {leftLinks}
-              </Hidden>
-            ) : (
-              <Typography className={classes.title}>{brand}</Typography>
-            )}
+            <Typography className={classes.title}>{brand}</Typography>
           </div>
-          <Hidden smDown implementation="css">
+          <Hidden smDown implementation="js">
             {rightLinks}
           </Hidden>
           <Hidden mdUp>
@@ -92,10 +88,7 @@ const Header = (props) => {
             }}
             onClose={handleDrawerToggle}
           >
-            <div className={classes.appResponsive}>
-              {leftLinks}
-              {rightLinks}
-            </div>
+            <div className={classes.appResponsive}>{rightLinks}</div>
           </Drawer>
         </Hidden>
       </Container>
