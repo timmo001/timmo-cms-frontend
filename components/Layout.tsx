@@ -14,6 +14,7 @@ import Container from "@material-ui/core/Container";
 
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
+import { NoSsr } from "@material-ui/core";
 
 let theme = createMuiTheme({
   palette: {
@@ -49,39 +50,41 @@ const Layout = (props) => {
       <Head>
         <title>Timmo</title>
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header
-          {...props}
-          brand="Timmo"
-          changeColorOnScroll={{
-            height: 200,
-            color: "primary",
-          }}
-          color="transparent"
-          fixed
-          rightLinks={<HeaderLinks {...props} />}
-        />
-        {props.children}
-        {props.general.footer_content ? (
-          <Container
-            className={classes.footer}
-            component="footer"
-            maxWidth="xl"
-          >
-            <Card>
-              <CardContent>
-                <ReactMarkdown
-                  source={props.general.footer_content}
-                  escapeHtml={false}
-                />
-              </CardContent>
-            </Card>
-          </Container>
-        ) : (
-          ""
-        )}
-      </ThemeProvider>
+      <NoSsr>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Header
+            {...props}
+            brand="Timmo"
+            changeColorOnScroll={{
+              height: 200,
+              color: "primary",
+            }}
+            color="transparent"
+            fixed
+            rightLinks={<HeaderLinks {...props} />}
+          />
+          {props.children}
+          {props.general.footer_content ? (
+            <Container
+              className={classes.footer}
+              component="footer"
+              maxWidth="xl"
+            >
+              <Card>
+                <CardContent>
+                  <ReactMarkdown
+                    source={props.general.footer_content}
+                    escapeHtml={false}
+                  />
+                </CardContent>
+              </Card>
+            </Container>
+          ) : (
+            ""
+          )}
+        </ThemeProvider>
+      </NoSsr>
     </>
   );
 };
