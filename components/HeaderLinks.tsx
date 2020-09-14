@@ -115,13 +115,15 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          variant="text"
-          className={classes.navLink}
-          href="mailto:contact@timmo.xyz"
-          target="_blank">
-          <Icon color={theme.palette.text.primary} path={mdiEmail} size={1} />
-        </Button>
+        <Tooltip title="Email" classes={{ tooltip: classes.tooltip }}>
+          <Button
+            variant="text"
+            className={classes.navLink}
+            href="mailto:contact@timmo.xyz"
+            target="_blank">
+            <Icon color={theme.palette.text.primary} path={mdiEmail} size={1} />
+          </Button>
+        </Tooltip>
       </ListItem>
     </List>
   );
