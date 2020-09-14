@@ -11,7 +11,6 @@ import {
   mdiEmail,
   mdiGithub,
   mdiHomeAssistant,
-  mdiLinkedin,
   mdiTwitch,
   mdiTwitter,
 } from "@mdi/js";
