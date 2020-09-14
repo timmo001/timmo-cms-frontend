@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pages = (await getPages()) || [];
   return {
     props: { categories, general, page, pages },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 };
 
