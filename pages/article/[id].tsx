@@ -54,7 +54,12 @@ const Article = (props) => {
                 {props.article.published_at}
               </Moment>
             </Typography>
-            <ReactMarkdown source={props.article.content} escapeHtml={false} />
+            <Typography>
+              <ReactMarkdown
+                source={props.article.content}
+                escapeHtml={false}
+              />
+            </Typography>
           </CardContent>
         </Card>
         {props.article.showcase_media.length > 0 ? (
