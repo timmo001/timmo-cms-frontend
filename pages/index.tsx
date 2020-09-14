@@ -54,10 +54,7 @@ const Home = (props) => {
               align="center"
               color="textPrimary"
               variant="h4">
-              <ReactMarkdown
-                source={props.homepage.welcome_message}
-                escapeHtml={false}
-              />
+              {props.homepage.welcome_message}
             </Typography>
             <Typography align="center" variant="h3" gutterBottom>
               {props.homepage.articles_heading}
