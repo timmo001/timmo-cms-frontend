@@ -27,7 +27,7 @@ const Category = (props) => {
         image={getApiMediaUrl(
           props.category.header_media
             ? props.category.header_media.url
-            : props.general.header_media.url
+            : props.general.header_media?.url
         )}
       />
       <Container

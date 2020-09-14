@@ -41,7 +41,7 @@ const Home = (props) => {
         image={getApiMediaUrl(
           props.homepage.header_media
             ? props.homepage.header_media.url
-            : props.general.header_media.url
+            : props.general.header_media?.url
         )}
       />
       <Container

@@ -40,7 +40,7 @@ const Article = (props) => {
         image={getApiMediaUrl(
           props.article.header_media
             ? props.article.header_media.url
-            : props.general.header_media.url
+            : props.general.header_media?.url
         )}
       />
       <Container

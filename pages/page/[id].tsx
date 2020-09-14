@@ -37,7 +37,7 @@ const Page = (props) => {
         image={getApiMediaUrl(
           props.page.header_media
             ? props.page.header_media.url
-            : props.general.header_media.url
+            : props.general.header_media?.url
         )}
       />
       <Container
