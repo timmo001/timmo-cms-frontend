@@ -104,17 +104,6 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip title="LinkedIn" classes={{ tooltip: classes.tooltip }}>
-          <Button
-            variant="text"
-            className={classes.navLink}
-            href="https://www.linkedin.com/in/aidan-timson-876b28bb"
-            target="_blank">
-            <Icon className={classes.icon} path={mdiLinkedin} size={1} />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
         <Tooltip title="Email" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
