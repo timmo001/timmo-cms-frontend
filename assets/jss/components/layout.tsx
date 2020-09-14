@@ -1,20 +1,14 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
-const layoutStyle = makeStyles((_theme: Theme) => ({
+const layoutStyle = makeStyles((theme: Theme) => ({
   profile: {
     textAlign: "center",
     "& img": {
-      maxWidth: "160px",
+      maxWidth: 160,
       width: "100%",
       margin: "0 auto",
       transform: "translate3d(0, -50%, 0)",
     },
-  },
-  description: {
-    margin: "1.071rem auto 0",
-    maxWidth: "600px",
-    color: "#999",
-    // textAlign: "center !important",
   },
   name: {
     marginTop: 80,
@@ -23,17 +17,6 @@ const layoutStyle = makeStyles((_theme: Theme) => ({
     position: "relative",
     marginTop: -60,
   },
-  socials: {
-    marginTop: 0,
-    width: "100%",
-    transform: "none",
-    left: 0,
-    top: 0,
-    height: "100%",
-    lineHeight: "41px",
-    fontSize: "20px",
-    color: "#999",
-  },
   navWrapper: {
     margin: "20px auto 50px auto",
     textAlign: "center",
@@ -41,11 +24,21 @@ const layoutStyle = makeStyles((_theme: Theme) => ({
   footer: {
     marginTop: 16,
   },
+  slider: {
+    margin: theme.spacing(4, 2),
+  },
+  sliderMediaContainer: {
+    padding: theme.spacing(1),
+  },
   sliderMedia: {
-    maxWidth: "60%",
+    height: 420,
+    backgroundSize: "contain",
   },
   welcomeMessage: {
-    margin: "16px 0",
+    margin: theme.spacing(2, 1),
+  },
+  title: {
+    marginTop: theme.spacing(2),
   },
 }));
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
-import { deepPurple, indigo } from "@material-ui/core/colors";
+import { teal, indigo } from "@material-ui/core/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {
   createMuiTheme,
@@ -19,7 +19,7 @@ import { NoSsr } from "@material-ui/core";
 let theme = createMuiTheme({
   palette: {
     type: "dark",
-    primary: deepPurple,
+    primary: teal,
     secondary: indigo,
     contrastThreshold: 3,
     tonalOffset: 0.2,
@@ -49,6 +49,7 @@ const Layout = (props) => {
     <>
       <Head>
         <title>Timmo</title>
+        <meta name="description" content="Aidan Timson aka Timmo" />
       </Head>
       <NoSsr>
         <ThemeProvider theme={theme}>
@@ -69,8 +70,7 @@ const Layout = (props) => {
             <Container
               className={classes.footer}
               component="footer"
-              maxWidth="xl"
-            >
+              maxWidth="xl">
               <Card>
                 <CardContent>
                   <ReactMarkdown

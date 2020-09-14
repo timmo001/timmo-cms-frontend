@@ -1,20 +1,14 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
-import {
-  boxShadow,
-  defaultFont,
-  drawerWidth,
-  primaryColor,
-  transition,
-} from "../shared";
+import { boxShadow, defaultFont, drawerWidth, transition } from "../shared";
 
-const headerStyle = makeStyles((_theme: Theme) => ({
+const headerStyle = makeStyles((theme: Theme) => ({
   appBar: {
     display: "flex",
     border: 0,
     borderRadius: 3,
     padding: "0.625rem 0",
-    marginBottom: "20px",
+    marginBottom: 20,
     width: "100%",
     boxShadow:
       "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
@@ -34,8 +28,8 @@ const headerStyle = makeStyles((_theme: Theme) => ({
     zIndex: 1100,
   },
   container: {
-    minHeight: "50px",
-    flex: "1",
+    minHeight: 50,
+    flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
@@ -47,15 +41,13 @@ const headerStyle = makeStyles((_theme: Theme) => ({
   title: {
     ...defaultFont,
     lineHeight: "30px",
-    fontSize: "18px",
-    borderRadius: "3px",
+    borderRadius: 3,
     textTransform: "none",
     userSelect: "none",
-    color: "inherit",
+    color: theme.palette.primary.contrastText,
     padding: "8px 16px",
     letterSpacing: "unset",
     "&:hover,&:focus": {
-      color: "inherit",
       background: "transparent",
     },
   },
@@ -63,7 +55,7 @@ const headerStyle = makeStyles((_theme: Theme) => ({
     margin: "20px 10px",
   },
   primary: {
-    backgroundColor: primaryColor,
+    backgroundColor: theme.palette.primary.main,
     color: "#FFFFFF",
     boxShadow:
       "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(156, 39, 176, 0.46)",
@@ -71,7 +63,7 @@ const headerStyle = makeStyles((_theme: Theme) => ({
   transparent: {
     backgroundColor: "transparent !important",
     boxShadow: "none",
-    paddingTop: "25px",
+    paddingTop: 25,
     color: "#FFFFFF",
   },
   drawerPaper: {

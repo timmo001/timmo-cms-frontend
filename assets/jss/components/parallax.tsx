@@ -3,7 +3,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 const parallaxStyle = makeStyles((_theme: Theme) => ({
   parallax: {
     height: "90vh",
-    maxHeight: "1000px",
+    maxHeight: 1000,
     overflow: "hidden",
     position: "relative",
     backgroundPosition: "center center",
@@ -30,7 +30,7 @@ const parallaxStyle = makeStyles((_theme: Theme) => ({
     },
   },
   small: {
-    height: "380px",
+    height: 380,
   },
 }));
 

@@ -1,9 +1,11 @@
 import React from "react";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
+import Slider from "react-slick";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
@@ -22,14 +24,29 @@ import useStyles from "../../assets/jss/components/layout";
 const Article = (props) => {
   const classes = useStyles();
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 2000,
+    slidesToShow: props.article.showcase_slides || 3,
+    slidesToScroll: props.article.showcase_slides || 3,
+  };
+
   return (
     <Layout {...props} classes={classes}>
-      <Parallax small filter image={getApiMediaUrl(props.article.image.url)} />
+      <Parallax
+        small
+        filter
+        image={getApiMediaUrl(
+          props.article.header_media
+            ? props.article.header_media.url
+            : props.general.header_media.url
+        )}
+      />
       <Container
         className={classes.mainRaised}
         component="article"
-        maxWidth="xl"
-      >
+        maxWidth="xl">
         <Card>
           <CardContent>
             <Typography variant="h3">{props.article.title}</Typography>
@@ -41,6 +58,27 @@ const Article = (props) => {
             <ReactMarkdown source={props.article.content} escapeHtml={false} />
           </CardContent>
         </Card>
+        {props.article.showcase_media.length > 0 ? (
+          <Card>
+            <CardContent>
+              <Slider className={classes.slider} {...sliderSettings}>
+                {props.article.showcase_media.map(
+                  ({ url, alternativeText }, index: number) => (
+                    <div className={classes.sliderMediaContainer} key={index}>
+                      <CardMedia
+                        className={classes.sliderMedia}
+                        image={getApiMediaUrl(url)}
+                        title={alternativeText}
+                      />
+                    </div>
+                  )
+                )}
+              </Slider>
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
       </Container>
     </Layout>
   );

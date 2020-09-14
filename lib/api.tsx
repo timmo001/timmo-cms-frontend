@@ -30,38 +30,48 @@ export async function getArticles() {
   const data = await fetchAPI(`query Articles {
     articles {
       id
-      published_at
-      title
       category {
         id
         name
       }
-      image {
+      title
+      thumbnail_media {
         url
         alternativeText
       }
       published_at
+      updated_at
     }
   }`);
   return data.articles;
 }
 
-export async function getArticle(id) {
+export async function getArticle(id: string | string[]) {
   const data = await fetchAPI(
     `query Articles($id: ID!) {
     article(id: $id) {
       id
-      title
-      content
-      image {
-        url
-        alternativeText
-      }
       category {
         id
         name
       }
+      title
+      content
+      header_media {
+        url
+        alternativeText
+      }
+      thumbnail_media {
+        url
+        alternativeText
+      }
+      showcase_media {
+        url
+        alternativeText
+      }
+      showcase_slides
       published_at
+      updated_at
     }
   }`,
     { variables: { id } }
@@ -74,12 +84,13 @@ export async function getCategories() {
     categories {
       id
       name
+      updated_at
     }
   }`);
   return data.categories;
 }
 
-export async function getCategory(id) {
+export async function getCategory(id: string | string[]) {
   const data = await fetchAPI(
     `query Category($id: ID!) {
     category(id: $id) {
@@ -91,21 +102,21 @@ export async function getCategory(id) {
       }
       articles {
         id
-        title
-        content
-        image {
-          url
-          alternativeText
-        }
         category {
           id
           name
         }
+        title
+        thumbnail_media {
+          url
+          alternativeText
+        }
         published_at
+        updated_at
       }
+      updated_at
     }
-  }
-`,
+  }`,
     { variables: { id } }
   );
   return data.category;
@@ -140,6 +151,7 @@ export async function getHomepage() {
       }
       showcase_slides
       welcome_message
+      updated_at
     }
   }`);
   return data.homepage;
@@ -150,23 +162,29 @@ export async function getPages() {
     pages {
       id
       title
+      updated_at
     }
   }`);
   return data.pages;
 }
 
-export async function getPage(id) {
+export async function getPage(id: string | string[]) {
   const data = await fetchAPI(
     `query Page($id: ID!) {
     page(id: $id) {
       id
       title
       content
-      slider_media {
+      header_media {
         url
         alternativeText
       }
-      slider_slides
+      showcase_media {
+        url
+        alternativeText
+      }
+      showcase_slides
+      updated_at
     }
   }`,
     { variables: { id } }

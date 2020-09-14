@@ -52,14 +52,12 @@ const HeaderLinks = (props) => {
       <ListItem className={classes.listItem}>
         <Tooltip
           title="Home Assistant Community"
-          classes={{ tooltip: classes.tooltip }}
-        >
+          classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
             href="https://community.home-assistant.io/u/timmo001/summary"
-            target="_blank"
-          >
+            target="_blank">
             <Icon
               path={mdiHomeAssistant}
               color={theme.palette.text.primary}
@@ -74,8 +72,7 @@ const HeaderLinks = (props) => {
             variant="text"
             className={classes.navLink}
             href="https://twitter.com/timmo001"
-            target="_blank"
-          >
+            target="_blank">
             <Icon
               path={mdiTwitter}
               color={theme.palette.text.primary}
@@ -90,8 +87,7 @@ const HeaderLinks = (props) => {
             variant="text"
             className={classes.navLink}
             href="https://twitch.tv/timmo001"
-            target="_blank"
-          >
+            target="_blank">
             <Icon
               path={mdiTwitch}
               color={theme.palette.text.primary}
@@ -106,8 +102,7 @@ const HeaderLinks = (props) => {
             variant="text"
             className={classes.navLink}
             href="https://github.com/timmo001"
-            target="_blank"
-          >
+            target="_blank">
             <Icon
               path={mdiGithub}
               color={theme.palette.text.primary}
@@ -121,8 +116,7 @@ const HeaderLinks = (props) => {
           variant="text"
           className={classes.navLink}
           href="mailto:contact@timmo.xyz"
-          target="_blank"
-        >
+          target="_blank">
           <Icon color={theme.palette.text.primary} path={mdiEmail} size={1} />
         </Button>
       </ListItem>

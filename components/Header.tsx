@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -49,6 +51,7 @@ const Header = (props) => {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   };
+
   const { color, rightLinks, brand, fixed, absolute } = props;
   return (
     <AppBar
@@ -58,27 +61,29 @@ const Header = (props) => {
         [classes.absolute]: absolute,
         [classes.fixed]: fixed,
       })}
-      color={color}
-    >
+      color={color}>
       <Container maxWidth="xl">
         <Toolbar className={classes.container}>
-          <div className={classes.flex}>
-            <Typography className={classes.title}>{brand}</Typography>
-          </div>
-          <Hidden smDown implementation="js">
+          <Link href="/">
+            <Button>
+              <Typography className={classes.title} component="h1" variant="h4">
+                {brand}
+              </Typography>
+            </Button>
+          </Link>
+          <Hidden smDown implementation="css">
             {rightLinks}
           </Hidden>
           <Hidden mdUp>
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerToggle}
-            >
+              onClick={handleDrawerToggle}>
               <Menu />
             </IconButton>
           </Hidden>
         </Toolbar>
-        <Hidden mdUp implementation="js">
+        <Hidden mdUp implementation="css">
           <Drawer
             variant="temporary"
             anchor={"right"}
@@ -86,8 +91,7 @@ const Header = (props) => {
             classes={{
               paper: classes.drawerPaper,
             }}
-            onClose={handleDrawerToggle}
-          >
+            onClose={handleDrawerToggle}>
             <div className={classes.appResponsive}>{rightLinks}</div>
           </Drawer>
         </Hidden>

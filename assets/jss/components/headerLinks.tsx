@@ -4,8 +4,7 @@ import tooltipsStyle from "../tooltips";
 
 const headerLinksStyle = makeStyles((theme: Theme) => ({
   list: {
-    // ...defaultFont,
-    fontSize: "14px",
+    fontSize: 14,
     margin: 0,
     paddingLeft: "0",
     listStyle: "none",
@@ -27,8 +26,8 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
         width: "calc(100% - 30px)",
         content: '""',
         display: "block",
-        height: "1px",
-        marginLeft: "15px",
+        height: 1,
+        marginLeft: 15,
         backgroundColor: "#e5e5e5",
       },
     },
@@ -41,12 +40,12 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
     position: "relative",
     padding: "0.9375rem",
     fontWeight: 400,
-    fontSize: "12px",
+    fontSize: 14,
     textTransform: "uppercase",
-    borderRadius: "3px",
+    borderRadius: 3,
     lineHeight: "20px",
     textDecoration: "none",
-    margin: "0px",
+    margin: 0,
     display: "inline-flex",
     "&:hover,&:focus": {
       color: "inherit",
@@ -54,9 +53,9 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       width: "calc(100% - 30px)",
-      marginLeft: "15px",
-      marginBottom: "8px",
-      marginTop: "8px",
+      marginLeft: 15,
+      marginBottom: 8,
+      marginTop: 8,
       textAlign: "left",
       "& > span:first-child": {
         justifyContent: "flex-start",
@@ -67,23 +66,23 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
     color: "inherit",
     padding: "0.9375rem",
     fontWeight: 400,
-    fontSize: "12px",
+    fontSize: 12,
     textTransform: "uppercase",
-    lineHeight: "20px",
+    lineHeight: 20,
     textDecoration: "none",
-    margin: "0px",
+    margin: 0,
     display: "inline-flex",
-    top: "4px",
+    top: 4,
   },
   registerNavLink: {
-    top: "3px",
+    top: 3,
     position: "relative",
     fontWeight: 400,
-    fontSize: "12px",
+    fontSize: 12,
     textTransform: "uppercase",
-    lineHeight: "20px",
+    lineHeight: 20,
     textDecoration: "none",
-    margin: "0px",
+    margin: 0,
     display: "inline-flex",
   },
   navLinkActive: {
@@ -91,14 +90,14 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   icons: {
-    width: "20px",
-    height: "20px",
-    marginRight: "3px",
+    width: 20,
+    height: 20,
+    marginRight: 3,
   },
   socialIcons: {
     position: "relative",
     fontSize: "20px !important",
-    marginRight: "4px",
+    marginRight: 4,
   },
   dropdownLink: {
     "&,&:hover,&:focus": {
@@ -112,6 +111,9 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
   divider: {
     height: "100%",
     padding: theme.spacing(1),
+  },
+  icon: {
+    color: theme.palette.primary.contrastText,
   },
 }));
 

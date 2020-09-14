@@ -24,13 +24,16 @@ const Category = (props) => {
       <Parallax
         small
         filter
-        image={getApiMediaUrl(props.category.header_media.url)}
+        image={getApiMediaUrl(
+          props.category.header_media
+            ? props.category.header_media.url
+            : props.general.header_media.url
+        )}
       />
       <Container
         className={classes.mainRaised}
         component="article"
-        maxWidth="xl"
-      >
+        maxWidth="xl">
         <Card>
           <CardContent>
             <Typography align="center" variant="h3" gutterBottom>

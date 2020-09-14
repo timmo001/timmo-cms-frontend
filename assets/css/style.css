@@ -1,4 +1,8 @@
 a {
-  color: #bababa;
+  color: #009688;
   text-decoration: none;
+}
+
+img {
+  max-width: 100%;
 }
