@@ -8,13 +8,14 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import { NoSsr } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
-import { NoSsr } from "@material-ui/core";
 
 let theme = createMuiTheme({
   palette: {
@@ -73,10 +74,12 @@ const Layout = (props) => {
               maxWidth="xl">
               <Card>
                 <CardContent>
-                  <ReactMarkdown
-                    source={props.general.footer_content}
-                    escapeHtml={false}
-                  />
+                  <Typography>
+                    <ReactMarkdown
+                      source={props.general.footer_content}
+                      escapeHtml={false}
+                    />
+                  </Typography>
                 </CardContent>
               </Card>
             </Container>
