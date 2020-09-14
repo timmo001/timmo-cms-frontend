@@ -8,11 +8,12 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@mdi/react";
 import {
-  mdiGithub,
-  mdiTwitter,
-  mdiHomeAssistant,
-  mdiTwitch,
   mdiEmail,
+  mdiGithub,
+  mdiHomeAssistant,
+  mdiLinkedin,
+  mdiTwitch,
+  mdiTwitter,
 } from "@mdi/js";
 
 import useStyles from "../assets/jss/components/headerLinks";
@@ -99,6 +100,17 @@ const HeaderLinks = (props) => {
               color={theme.palette.text.primary}
               size={1}
             />
+          </Button>
+        </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Tooltip title="LinkedIn" classes={{ tooltip: classes.tooltip }}>
+          <Button
+            variant="text"
+            className={classes.navLink}
+            href="https://www.linkedin.com/in/aidan-timson-876b28bb"
+            target="_blank">
+            <Icon className={classes.icon} path={mdiLinkedin} size={1} />
           </Button>
         </Tooltip>
       </ListItem>
