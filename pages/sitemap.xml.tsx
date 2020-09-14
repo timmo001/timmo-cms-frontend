@@ -1,4 +1,4 @@
-import { getArticles, getCategories, getHomepage, getPages } from "../lib/api";
+import { getAbout, getArticles, getCategories, getHomepage } from "../lib/api";
 
 const generateSitemap = (pages, origin) => {
   let xml = "";
@@ -18,13 +18,14 @@ const generateSitemap = (pages, origin) => {
 };
 
 export async function getServerSideProps({ res }) {
+  const about = await getAbout();
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const homepage = await getHomepage();
-  const pages = (await getPages()) || [];
 
   const data = [];
   data.push({ path: "", updated: homepage.updated_at });
+  data.push({ path: "/about", updated: about.updated_at });
   articles.forEach((article) =>
     data.push({
       path: `/article/${article.id}`,
@@ -37,14 +38,11 @@ export async function getServerSideProps({ res }) {
       updated: category.updated_at,
     })
   );
-  pages.forEach((page) =>
-    data.push({
-      path: `/page/${page.id}`,
-      updated: page.updated_at,
-    })
-  );
 
-  const sitemap = generateSitemap(data, "https://timmo-cms-frontend.vercel.app");
+  const sitemap = generateSitemap(
+    data,
+    "https://timmo-cms-frontend.vercel.app"
+  );
 
   console.log("Sitemap:");
   console.log(sitemap);

@@ -1,14 +1,24 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const layoutStyle = makeStyles((theme: Theme) => ({
-  profile: {
-    textAlign: "center",
-    "& img": {
-      maxWidth: 160,
-      width: "100%",
-      margin: "0 auto",
-      transform: "translate3d(0, -50%, 0)",
+  cardOverflow: {
+    overflow: "visible",
+  },
+  cardContentOverflow: {
+    paddingTop: 140,
+    "& h2": {
+      textAlign: "center",
     },
+    "& h3": {
+      textAlign: "center",
+    },
+  },
+  profile: {
+    position: "absolute",
+    top: -160,
+    left: "calc(50% - 140px)",
+    height: 280,
+    width: 280,
   },
   name: {
     marginTop: 80,

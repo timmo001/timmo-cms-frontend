@@ -23,21 +23,12 @@ const HeaderLinks = (props) => {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link href="/">
+        <Link href="/about">
           <Button variant="text" className={classes.navLink}>
-            <span className={classes.listItemText}>Home</span>
+            <span className={classes.listItemText}>About Me</span>
           </Button>
         </Link>
       </ListItem>
-      {props.pages.map(({ id, title }) => (
-        <ListItem key={id} className={classes.listItem}>
-          <Link as={`/page/${id}`} href="/page/[id]">
-            <Button variant="text" className={classes.navLink}>
-              <span className={classes.listItemText}>{title}</span>
-            </Button>
-          </Link>
-        </ListItem>
-      ))}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
       {props.categories.map(({ id, name }) => (
         <ListItem key={id} className={classes.listItem}>

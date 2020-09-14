@@ -2,6 +2,7 @@ import React from "react";
 import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
+import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -9,25 +10,25 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
 import {
+  getAbout,
   getApiMediaUrl,
+  getArticles,
   getCategories,
   getGeneral,
-  getPage,
-  getPages,
-} from "../../lib/api";
-import Layout from "../../components/Layout";
-import Parallax from "../../components/Parallax";
-import useStyles from "../../assets/jss/components/layout";
+} from "../lib/api";
+import Layout from "../components/Layout";
+import Parallax from "../components/Parallax";
+import useStyles from "../assets/jss/components/layout";
 
-const Page = (props) => {
+const About = (props) => {
   const classes = useStyles();
 
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 2000,
-    slidesToShow: props.page.showcase_slides || 3,
-    slidesToScroll: props.page.showcase_slides || 3,
+    slidesToShow: props.about.showcase_slides || 3,
+    slidesToScroll: props.about.showcase_slides || 3,
   };
   return (
     <Layout {...props} classes={classes}>
@@ -35,8 +36,8 @@ const Page = (props) => {
         small
         filter
         image={getApiMediaUrl(
-          props.page.header_media
-            ? props.page.header_media.url
+          props.about.header_media
+            ? props.about.header_media.url
             : props.general.header_media?.url
         )}
       />
@@ -44,17 +45,33 @@ const Page = (props) => {
         className={classes.mainRaised}
         component="article"
         maxWidth="xl">
-        <Card>
-          <CardContent>
-            <Typography variant="h3">{props.page.title}</Typography>
-            <ReactMarkdown source={props.page.content} escapeHtml={false} />
+        <Card className={classes.cardOverflow}>
+          <Avatar
+            className={classes.profile}
+            alt={props.about.profile_name}
+            src={props.about.profile_media?.url}
+          />
+          <CardContent className={classes.cardContentOverflow}>
+            <Typography component="h2" variant="h3">
+              {props.about.profile_name}
+            </Typography>
+            <Typography component="h3" variant="h5">
+              {props.about.profile_subtitle}
+            </Typography>
           </CardContent>
         </Card>
-        {props.page.showcase_media.length > 0 ? (
+        <Card>
+          <CardContent>
+            <Typography>
+              <ReactMarkdown source={props.about.content} escapeHtml={false} />
+            </Typography>
+          </CardContent>
+        </Card>
+        {props.about.showcase_media.length > 0 ? (
           <Card>
             <CardContent>
               <Slider className={classes.slider} {...sliderSettings}>
-                {props.page.showcase_media.map(
+                {props.about.showcase_media.map(
                   ({ url, alternativeText }, index: number) => (
                     <div className={classes.sliderMediaContainer} key={index}>
                       <CardMedia
@@ -76,27 +93,15 @@ const Page = (props) => {
   );
 };
 
-export async function getStaticPaths() {
-  const pages = (await getPages()) || [];
-  return {
-    paths: pages.map((page) => ({
-      params: {
-        id: page.id,
-      },
-    })),
-    fallback: false,
-  };
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
+  const about = await getAbout();
+  const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
-  const page = await getPage(context.params.id);
-  const pages = (await getPages()) || [];
   return {
-    props: { categories, general, page, pages },
+    props: { about, articles, categories, general },
     revalidate: 1,
   };
 };
 
-export default Page;
+export default About;

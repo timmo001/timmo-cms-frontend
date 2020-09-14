@@ -15,7 +15,6 @@ import {
   getArticles,
   getCategories,
   getGeneral,
-  getPages,
 } from "../../lib/api";
 import Layout from "../../components/Layout";
 import Parallax from "../../components/Parallax";
@@ -100,9 +99,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const article = (await getArticle(context.params.id)) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
-  const pages = (await getPages()) || [];
   return {
-    props: { article, categories, general, pages },
+    props: { article, categories, general },
     revalidate: 1,
   };
 };

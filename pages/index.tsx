@@ -15,7 +15,6 @@ import {
   getCategories,
   getGeneral,
   getHomepage,
-  getPages,
 } from "../lib/api";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
@@ -109,9 +108,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
   const homepage = await getHomepage();
-  const pages = (await getPages()) || [];
   return {
-    props: { articles, categories, general, homepage, pages },
+    props: { articles, categories, general, homepage },
     revalidate: 1,
   };
 };

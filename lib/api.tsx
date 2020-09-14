@@ -26,6 +26,32 @@ export function getApiMediaUrl(url: string): string {
   }${url}`;
 }
 
+export async function getAbout() {
+  const data = await fetchAPI(`query About {
+    about {
+      id
+      content
+      header_media {
+        url
+        alternativeText
+      }
+      profile_name
+      profile_subtitle
+      profile_media {
+        url
+        alternativeText
+      }
+      showcase_media {
+        url
+        alternativeText
+      }
+      showcase_slides
+      updated_at
+    }
+  }`);
+  return data.about;
+}
+
 export async function getArticles() {
   const data = await fetchAPI(`query Articles {
     articles {
@@ -138,7 +164,6 @@ export async function getGeneral() {
 export async function getHomepage() {
   const data = await fetchAPI(`query Homepage {
     homepage {
-      id
       articles_heading
       header_media {
         url
@@ -155,39 +180,4 @@ export async function getHomepage() {
     }
   }`);
   return data.homepage;
-}
-
-export async function getPages() {
-  const data = await fetchAPI(`query Pages {
-    pages {
-      id
-      title
-      updated_at
-    }
-  }`);
-  return data.pages;
-}
-
-export async function getPage(id: string | string[]) {
-  const data = await fetchAPI(
-    `query Page($id: ID!) {
-    page(id: $id) {
-      id
-      title
-      content
-      header_media {
-        url
-        alternativeText
-      }
-      showcase_media {
-        url
-        alternativeText
-      }
-      showcase_slides
-      updated_at
-    }
-  }`,
-    { variables: { id } }
-  );
-  return data.page;
 }
