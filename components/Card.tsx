@@ -11,6 +11,10 @@ import Typography from "@material-ui/core/Typography";
 import { getApiMediaUrl } from "../lib/api";
 import useStyles from "../assets/jss/components/card";
 
+interface Tag {
+  name: string;
+}
+
 const Card = ({ article }) => {
   const classes = useStyles();
 
@@ -42,8 +46,8 @@ const Card = ({ article }) => {
             </Typography>
             <Typography component="div">
               {article.tags
-                .sort((a, b) => (a.name > b.name ? 1 : -1))
-                .map((tag, index) => (
+                .sort((a: Tag, b: Tag) => (a.name > b.name ? 1 : -1))
+                .map((tag: Tag, index: number) => (
                   <Chip key={index} label={tag.name} />
                 ))}
             </Typography>
