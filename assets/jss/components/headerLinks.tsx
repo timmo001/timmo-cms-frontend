@@ -113,7 +113,7 @@ const headerLinksStyle = makeStyles((theme: Theme) => ({
     padding: theme.spacing(1),
   },
   icon: {
-    color: theme.palette.primary.contrastText,
+    color: "inherit",
   },
 }));
 
