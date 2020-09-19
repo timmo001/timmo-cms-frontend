@@ -11,7 +11,6 @@ import {
   mdiEmail,
   mdiGithub,
   mdiHomeAssistant,
-  mdiLinkedin,
   mdiTwitch,
   mdiTwitter,
 } from "@mdi/js";
@@ -42,16 +41,14 @@ const HeaderLinks = (props) => {
       ))}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
       <ListItem className={classes.listItem}>
-        <Tooltip
-          title="Home Assistant Community"
-          classes={{ tooltip: classes.tooltip }}>
+        <Tooltip title="GitHub" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
-            href="https://community.home-assistant.io/u/timmo001/summary"
+            href="https://github.com/timmo001"
             target="_blank">
             <Icon
-              path={mdiHomeAssistant}
+              path={mdiGithub}
               color={theme.palette.text.primary}
               size={1}
             />
@@ -89,28 +86,19 @@ const HeaderLinks = (props) => {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip title="GitHub" classes={{ tooltip: classes.tooltip }}>
+        <Tooltip
+          title="Home Assistant Community"
+          classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
             className={classes.navLink}
-            href="https://github.com/timmo001"
+            href="https://community.home-assistant.io/u/timmo001/summary"
             target="_blank">
             <Icon
-              path={mdiGithub}
+              path={mdiHomeAssistant}
               color={theme.palette.text.primary}
               size={1}
             />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip title="LinkedIn" classes={{ tooltip: classes.tooltip }}>
-          <Button
-            variant="text"
-            className={classes.navLink}
-            href="https://www.linkedin.com/in/aidan-timson-876b28bb"
-            target="_blank">
-            <Icon className={classes.icon} path={mdiLinkedin} size={1} />
           </Button>
         </Tooltip>
       </ListItem>

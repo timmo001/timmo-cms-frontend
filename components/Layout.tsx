@@ -39,6 +39,11 @@ let theme = createMuiTheme({
         },
       },
     },
+    MuiChip: {
+      root: {
+        margin: 4,
+      },
+    },
   },
 });
 theme = responsiveFontSizes(theme);
@@ -74,7 +79,7 @@ const Layout = (props) => {
               maxWidth="xl">
               <Card>
                 <CardContent>
-                  <Typography>
+                  <Typography component="div">
                     <ReactMarkdown
                       source={props.general.footer_content}
                       escapeHtml={false}

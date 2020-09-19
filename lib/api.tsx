@@ -60,6 +60,9 @@ export async function getArticles() {
         id
         name
       }
+      tags {
+        name
+      }
       title
       thumbnail_media {
         url
@@ -79,6 +82,9 @@ export async function getArticle(id: string | string[]) {
       id
       category {
         id
+        name
+      }
+      tags {
         name
       }
       title
