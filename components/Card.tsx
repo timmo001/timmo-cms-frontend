@@ -4,6 +4,7 @@ import Link from "next/link";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import Chip from "@material-ui/core/Chip";
 import MuiCard from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
@@ -38,6 +39,13 @@ const Card = ({ article }) => {
               component="span"
               variant="subtitle1">
               <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+            </Typography>
+            <Typography component="div">
+              {article.tags
+                .sort((a, b) => (a.name > b.name ? 1 : -1))
+                .map((tag, index) => (
+                  <Chip key={index} label={tag.name} />
+                ))}
             </Typography>
           </CardContent>
         </MuiCard>
