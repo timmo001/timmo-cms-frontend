@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import Chip from "@material-ui/core/Chip";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
@@ -16,6 +17,7 @@ import {
   getCategories,
   getGeneral,
 } from "../../lib/api";
+import { Tag } from "../../components/Card";
 import Layout from "../../components/Layout";
 import Parallax from "../../components/Parallax";
 import useStyles from "../../assets/jss/components/layout";
@@ -53,6 +55,11 @@ const Article = (props) => {
               <Moment format="Do MMMM YYYY">
                 {props.article.published_at}
               </Moment>
+              {props.article.tags
+                .sort((a: Tag, b: Tag) => (a.name > b.name ? 1 : -1))
+                .map((tag: Tag, index: number) => (
+                  <Chip key={index} label={tag.name} />
+                ))}
             </Typography>
             <Typography>
               <ReactMarkdown

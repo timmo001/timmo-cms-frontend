@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { getApiMediaUrl } from "../lib/api";
 import useStyles from "../assets/jss/components/card";
 
-interface Tag {
+export interface Tag {
   name: string;
 }
 
