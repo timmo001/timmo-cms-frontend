@@ -62,7 +62,7 @@ export async function getAbout() {
 
 export async function getArticles() {
   const data = await fetchAPI(`query Articles {
-    articles {
+    articles(sort: "published_at:desc") {
       id
       category {
         id
@@ -96,19 +96,12 @@ export async function getArticles() {
       updated_at
     }
   }`);
-  return data.articles
-    .sort((a, b) =>
-      moment(a.published_at, "Do MMMM YYYY") >
-      moment(b.published_at, "Do MMMM YYYY")
-        ? 1
-        : -1
-    )
-    .reverse();
+  return data.articles;
 }
 
 export async function getCategories() {
   const data = await fetchAPI(`query Categories {
-    categories {
+    categories(sort: "name:asc") {
       id
       name
       header_media {
@@ -117,7 +110,7 @@ export async function getCategories() {
         name
         url
       }
-      articles {
+      articles(sort: "published_at:desc") {
         id
         category {
           id
