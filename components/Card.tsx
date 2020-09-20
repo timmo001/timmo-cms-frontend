@@ -19,7 +19,7 @@ const Card = ({ article }) => {
   const classes = useStyles();
 
   return (
-    <Link as={`/article/${article.id}`} href="/article/[id]">
+    <Link href={{ pathname: "/article", query: { id: article.id } }}>
       <ButtonBase className={classes.button}>
         <MuiCard className={classes.card} elevation={2} square={false}>
           {article.thumbnail_media ? (
