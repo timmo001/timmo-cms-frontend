@@ -61,7 +61,7 @@ const Articles = (props) => {
             <div className={classes.flex} />
             <Link href={{ pathname: "/articles", query: { page: page + 1 } }}>
               <Button
-                disabled={props.articles.length <= startFrom + 6}
+                disabled={props.articles.length < startFrom + 6}
                 color="primary"
                 size="large"
                 variant="text">
