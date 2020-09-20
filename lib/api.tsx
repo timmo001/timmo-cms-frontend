@@ -1,3 +1,5 @@
+import moment from "moment";
+
 async function fetchAPI(query, props?): Promise<any> {
   const variables = props?.variables;
   const res = await fetch(`${process.env.API_URL}/graphql`, {
@@ -94,7 +96,14 @@ export async function getArticles() {
       updated_at
     }
   }`);
-  return data.articles;
+  return data.articles
+    .sort((a, b) =>
+      moment(a.published_at, "Do MMMM YYYY") >
+      moment(b.published_at, "Do MMMM YYYY")
+        ? 1
+        : -1
+    )
+    .reverse();
 }
 
 export async function getCategories() {
