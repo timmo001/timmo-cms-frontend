@@ -68,7 +68,7 @@ export async function getArticles() {
         id
         name
       }
-      tags(sort: "name:asc") {
+      tags {
         name
       }
       title
@@ -116,7 +116,7 @@ export async function getCategories() {
           id
           name
         }
-        tags(sort: "name:asc") {
+        tags {
           name
         }
         title
