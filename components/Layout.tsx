@@ -44,6 +44,11 @@ let theme = createMuiTheme({
         margin: 4,
       },
     },
+    MuiCardActions: {
+      root: {
+        justifyContent: "flex-end",
+      },
+    },
   },
 });
 theme = responsiveFontSizes(theme);
