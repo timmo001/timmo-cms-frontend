@@ -100,7 +100,7 @@ const Home = (props) => {
             <Typography align="center" variant="h3" gutterBottom>
               {props.homepage.articles_heading}
             </Typography>
-            <Articles articles={props.articles.slice(0, 6)} />
+            <Articles articles={props.articles} />
           </CardContent>
         </Card>
       </Container>
