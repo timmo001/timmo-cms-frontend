@@ -50,6 +50,7 @@ const layoutStyle = makeStyles((theme: Theme) => ({
   title: {
     marginTop: theme.spacing(2),
   },
+  flex: { flex: 1 },
 }));
 
 export default layoutStyle;

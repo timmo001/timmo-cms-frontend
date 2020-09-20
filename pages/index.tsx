@@ -1,12 +1,13 @@
 import React from "react";
 import { GetStaticProps } from "next";
-import ReactMarkdown from "react-markdown";
+import Link from "next/link";
 import Slider from "react-slick";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import {
@@ -100,8 +101,15 @@ const Home = (props) => {
             <Typography align="center" variant="h3" gutterBottom>
               {props.homepage.articles_heading}
             </Typography>
-            <Articles articles={props.articles} />
+            <Articles articles={props.articles.slice(0, 6)} />
           </CardContent>
+          <CardActions>
+            <Link href={{ pathname: "/articles", query: { page: 1 } }}>
+              <Button color="primary" size="large" variant="text">
+                Older Articles
+              </Button>
+            </Link>
+          </CardActions>
         </Card>
       </Container>
     </Layout>
