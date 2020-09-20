@@ -106,7 +106,7 @@ const Home = (props) => {
           <CardActions>
             <Link href={{ pathname: "/articles", query: { page: 1 } }}>
               <Button
-                disabled={props.articles.length < 6}
+                disabled={props.articles.length <= 6}
                 color="primary"
                 size="large"
                 variant="text">
