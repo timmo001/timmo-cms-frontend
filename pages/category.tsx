@@ -1,10 +1,14 @@
-import Articles from "../components/Articles";
+import React from "react";
+import Link from "next/link";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl, getCategories, getGeneral } from "../lib/api";
+import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import useStyles from "../assets/jss/components/layout";
@@ -13,6 +17,8 @@ const Category = (props) => {
   const category = props.categories.find(
     (category) => category.id === props.query.id
   );
+  const page: number = Number(props.query.page) || 0;
+  const startFrom: number = page * 6;
 
   const classes = useStyles();
 
@@ -56,11 +62,45 @@ const Category = (props) => {
         maxWidth="xl">
         <Card>
           <CardContent>
-            <Typography align="center" variant="h3" gutterBottom>
+            <Typography align="center" variant="h3">
               {category.name}
             </Typography>
-            <Articles articles={category.articles} />
+            <Typography align="center" component="h4" variant="h5" gutterBottom>
+              Page {page + 1}
+            </Typography>
+            <Articles
+              articles={category.articles.slice(startFrom, startFrom + 6)}
+            />
           </CardContent>
+          <CardActions>
+            <Link
+              href={{
+                pathname: "/category",
+                query: { id: category.id, page: page - 1 },
+              }}>
+              <Button
+                disabled={startFrom === 0}
+                color="primary"
+                size="large"
+                variant="text">
+                Newer Articles
+              </Button>
+            </Link>
+            <div className={classes.flex} />
+            <Link
+              href={{
+                pathname: "/category",
+                query: { id: category.id, page: page + 1 },
+              }}>
+              <Button
+                disabled={category.articles.length <= startFrom + 6}
+                color="primary"
+                size="large"
+                variant="text">
+                Older Articles
+              </Button>
+            </Link>
+          </CardActions>
         </Card>
       </Container>
     </Layout>
