@@ -32,18 +32,24 @@ export async function getAbout() {
       id
       content
       header_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       profile_name
       profile_subtitle
       profile_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       showcase_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       showcase_slides
       updated_at
@@ -64,10 +70,26 @@ export async function getArticles() {
         name
       }
       title
-      thumbnail_media {
-        url
+      content
+      header_media {
         alternativeText
+        caption
+        name
+        url
       }
+      thumbnail_media {
+        alternativeText
+        caption
+        name
+        url
+      }
+      showcase_media {
+        alternativeText
+        caption
+        name
+        url
+      }
+      showcase_slides
       published_at
       updated_at
     }
@@ -75,62 +97,16 @@ export async function getArticles() {
   return data.articles;
 }
 
-export async function getArticle(id: string | string[]) {
-  const data = await fetchAPI(
-    `query Articles($id: ID!) {
-    article(id: $id) {
-      id
-      category {
-        id
-        name
-      }
-      tags {
-        name
-      }
-      title
-      content
-      header_media {
-        url
-        alternativeText
-      }
-      thumbnail_media {
-        url
-        alternativeText
-      }
-      showcase_media {
-        url
-        alternativeText
-      }
-      showcase_slides
-      published_at
-      updated_at
-    }
-  }`,
-    { variables: { id } }
-  );
-  return data.article;
-}
-
 export async function getCategories() {
   const data = await fetchAPI(`query Categories {
     categories {
       id
       name
-      updated_at
-    }
-  }`);
-  return data.categories;
-}
-
-export async function getCategory(id: string | string[]) {
-  const data = await fetchAPI(
-    `query Category($id: ID!) {
-    category(id: $id) {
-      id
-      name
       header_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       articles {
         id
@@ -138,20 +114,37 @@ export async function getCategory(id: string | string[]) {
           id
           name
         }
-        title
-        thumbnail_media {
-          url
-          alternativeText
+        tags {
+          name
         }
+        title
+        content
+        header_media {
+          alternativeText
+          caption
+          name
+          url
+        }
+        thumbnail_media {
+          alternativeText
+          caption
+          name
+          url
+        }
+        showcase_media {
+          alternativeText
+          caption
+          name
+          url
+        }
+        showcase_slides
         published_at
         updated_at
-      }
+        }
       updated_at
     }
-  }`,
-    { variables: { id } }
-  );
-  return data.category;
+  }`);
+  return data.categories;
 }
 
 export async function getGeneral() {
@@ -172,13 +165,17 @@ export async function getHomepage() {
     homepage {
       articles_heading
       header_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       showcase_heading
       showcase_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
       showcase_slides
       welcome_message
