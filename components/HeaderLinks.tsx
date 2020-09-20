@@ -30,9 +30,9 @@ const HeaderLinks = (props) => {
         </Link>
       </ListItem>
       <ListItem className={clsx(classes.listItem, classes.divider)} />
-      {props.categories.map(({ id, name }) => (
-        <ListItem key={id} className={classes.listItem}>
-          <Link as={`/category/${id}`} href="/category/[id]">
+      {props.categories.map(({ id, name }, index: number) => (
+        <ListItem key={index} className={classes.listItem}>
+          <Link href={{ pathname: "/category", query: { id } }}>
             <Button variant="text" className={classes.navLink}>
               <span className={classes.listItemText}>{name}</span>
             </Button>
