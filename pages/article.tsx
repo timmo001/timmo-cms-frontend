@@ -76,9 +76,13 @@ const Article = (props) => {
         <Card>
           <CardContent>
             <Typography variant="h3">{article.title}</Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
-            </Typography>
+            {article.published_at ? (
+              <Typography variant="subtitle1" color="textSecondary">
+                <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+              </Typography>
+            ) : (
+              ""
+            )}
             <Typography component="div">
               {article.tags
                 .sort((a: Tag, b: Tag) => (a.name > b.name ? 1 : -1))
@@ -86,7 +90,7 @@ const Article = (props) => {
                   <Chip key={index} label={tag.name} />
                 ))}
             </Typography>
-            <Typography>
+            <Typography component="div">
               <ReactMarkdown source={article.content} escapeHtml={false} />
             </Typography>
           </CardContent>

@@ -38,12 +38,16 @@ const Card = ({ article }) => {
             <Typography color="primary" component="h3" variant="h4">
               {article.title}
             </Typography>
-            <Typography
-              color="textSecondary"
-              component="span"
-              variant="subtitle1">
-              <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
-            </Typography>
+            {article.published_at ? (
+              <Typography
+                color="textSecondary"
+                component="span"
+                variant="subtitle1">
+                <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+              </Typography>
+            ) : (
+              ""
+            )}
             <Typography component="div">
               {article.tags
                 .sort((a: Tag, b: Tag) => (a.name > b.name ? 1 : -1))
