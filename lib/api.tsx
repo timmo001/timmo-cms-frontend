@@ -47,7 +47,7 @@ export async function getAbout() {
         name
         url
       }
-      showcase_media {
+      showcase_media(sort: "name:asc") {
         alternativeText
         caption
         name
@@ -85,7 +85,7 @@ export async function getArticles() {
         name
         url
       }
-      showcase_media {
+      showcase_media(sort: "name:asc") {
         alternativeText
         caption
         name
@@ -133,7 +133,7 @@ export async function getCategories() {
           name
           url
         }
-        showcase_media {
+        showcase_media(sort: "name:asc") {
           alternativeText
           caption
           name
@@ -173,7 +173,7 @@ export async function getHomepage() {
         url
       }
       showcase_heading
-      showcase_media {
+      showcase_media(sort: "name:asc") {
         alternativeText
         caption
         name
