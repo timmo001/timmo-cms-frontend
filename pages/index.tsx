@@ -47,21 +47,21 @@ const Home = (props) => {
         className={classes.mainRaised}
         component="article"
         maxWidth="xl">
-        <Card>
-          <CardContent>
-            <Typography
-              className={classes.welcomeMessage}
-              align="center"
-              color="textPrimary"
-              variant="h4">
-              {props.homepage.welcome_message}
-            </Typography>
-            <Typography align="center" variant="h3" gutterBottom>
-              {props.homepage.articles_heading}
-            </Typography>
-            <Articles articles={props.articles.slice(0, 6)} />
-          </CardContent>
-        </Card>
+        {props.homepage.welcome_message ? (
+          <Card>
+            <CardContent>
+              <Typography
+                className={classes.welcomeMessage}
+                align="center"
+                color="textPrimary"
+                variant="h4">
+                {props.homepage.welcome_message}
+              </Typography>
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
         <Card>
           <CardContent>
             {props.homepage.showcase_heading ? (
@@ -93,6 +93,14 @@ const Home = (props) => {
             ) : (
               ""
             )}
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Typography align="center" variant="h3" gutterBottom>
+              {props.homepage.articles_heading}
+            </Typography>
+            <Articles articles={props.articles.slice(0, 6)} />
           </CardContent>
         </Card>
       </Container>
