@@ -105,7 +105,11 @@ const Home = (props) => {
           </CardContent>
           <CardActions>
             <Link href={{ pathname: "/articles", query: { page: 1 } }}>
-              <Button color="primary" size="large" variant="text">
+              <Button
+                disabled={props.articles.length <= 6}
+                color="primary"
+                size="large"
+                variant="text">
                 Older Articles
               </Button>
             </Link>
