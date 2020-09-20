@@ -41,8 +41,11 @@ const Articles = (props) => {
         maxWidth="xl">
         <Card>
           <CardContent>
-            <Typography align="center" variant="h3" gutterBottom>
-              {props.homepage.articles_heading} - Page {page + 1}
+            <Typography align="center" variant="h3">
+              {props.homepage.articles_heading}
+            </Typography>
+            <Typography align="center" component="h4" variant="h5" gutterBottom>
+              Page {page + 1}
             </Typography>
             <ArticlesComponent
               articles={props.articles.slice(startFrom, startFrom + 6)}
