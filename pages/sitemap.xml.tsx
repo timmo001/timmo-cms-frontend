@@ -11,9 +11,9 @@ const generateSitemap = (pages, origin) => {
     </url>`;
   });
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${xml}
+    ${xml.trimStart()}
 </urlset>`;
 };
 
@@ -28,13 +28,13 @@ export async function getServerSideProps({ res }) {
   data.push({ path: "/about", updated: about.updated_at });
   articles.forEach((article) =>
     data.push({
-      path: `/article/${article.id}`,
+      path: `/article?id=${article.id}`,
       updated: article.updated_at,
     })
   );
   categories.forEach((category) =>
     data.push({
-      path: `/category/${category.id}`,
+      path: `/category?id=${category.id}`,
       updated: category.updated_at,
     })
   );
