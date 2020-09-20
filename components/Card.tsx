@@ -49,11 +49,9 @@ const Card = ({ article }) => {
               ""
             )}
             <Typography component="div">
-              {article.tags
-                .sort((a: Tag, b: Tag) => (a.name > b.name ? 1 : -1))
-                .map((tag: Tag, index: number) => (
-                  <Chip key={index} label={tag.name} />
-                ))}
+              {article.tags.map((tag: Tag, index: number) => (
+                <Chip key={index} label={tag.name} />
+              ))}
             </Typography>
           </CardContent>
         </MuiCard>
