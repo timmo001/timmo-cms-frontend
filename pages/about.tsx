@@ -62,7 +62,7 @@ const About = (props) => {
         </Card>
         <Card>
           <CardContent>
-            <Typography>
+            <Typography component="div">
               <ReactMarkdown source={props.about.content} escapeHtml={false} />
             </Typography>
           </CardContent>
