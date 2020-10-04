@@ -63,39 +63,43 @@ const Home = (props) => {
         ) : (
           ""
         )}
-        <Card>
-          <CardContent>
-            {props.homepage.showcase_heading ? (
-              <Typography
-                className={classes.title}
-                align="center"
-                color="textPrimary"
-                variant="h3"
-                gutterBottom>
-                {props.homepage.showcase_heading}
-              </Typography>
-            ) : (
-              ""
-            )}
-            {props.homepage.showcase_media.length > 0 ? (
-              <Slider className={classes.slider} {...sliderSettings}>
-                {props.homepage.showcase_media.map(
-                  ({ url, alternativeText }, index: number) => (
-                    <div className={classes.sliderMediaContainer} key={index}>
-                      <CardMedia
-                        className={classes.sliderMedia}
-                        image={getApiMediaUrl(url)}
-                        title={alternativeText}
-                      />
-                    </div>
-                  )
-                )}
-              </Slider>
-            ) : (
-              ""
-            )}
-          </CardContent>
-        </Card>
+        {props.homepage.showcase_media.length > 0 ? (
+          <Card>
+            <CardContent>
+              {props.homepage.showcase_heading ? (
+                <Typography
+                  className={classes.title}
+                  align="center"
+                  color="textPrimary"
+                  variant="h3"
+                  gutterBottom>
+                  {props.homepage.showcase_heading}
+                </Typography>
+              ) : (
+                ""
+              )}
+              {props.homepage.showcase_media.length > 0 ? (
+                <Slider className={classes.slider} {...sliderSettings}>
+                  {props.homepage.showcase_media.map(
+                    ({ url, alternativeText }, index: number) => (
+                      <div className={classes.sliderMediaContainer} key={index}>
+                        <CardMedia
+                          className={classes.sliderMedia}
+                          image={getApiMediaUrl(url)}
+                          title={alternativeText}
+                        />
+                      </div>
+                    )
+                  )}
+                </Slider>
+              ) : (
+                ""
+              )}
+            </CardContent>
+          </Card>
+        ) : (
+          ""
+        )}
         <Card>
           <CardContent>
             <Typography align="center" variant="h3" gutterBottom>
