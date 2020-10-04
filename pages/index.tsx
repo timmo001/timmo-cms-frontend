@@ -9,6 +9,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import ReactMarkdown from "react-markdown";
 
 import {
   getApiMediaUrl,
@@ -52,11 +54,15 @@ const Home = (props) => {
           <Card>
             <CardContent>
               <Typography
-                className={classes.welcomeMessage}
+                className={clsx("welcome-message", classes.welcomeMessage)}
                 align="center"
                 color="textPrimary"
+                component="div"
                 variant="h4">
-                {props.homepage.welcome_message}
+                <ReactMarkdown
+                  source={props.homepage.welcome_message}
+                  escapeHtml={false}
+                />
               </Typography>
             </CardContent>
           </Card>
