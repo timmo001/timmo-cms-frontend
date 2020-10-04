@@ -2,8 +2,8 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const cardStyle = makeStyles((theme: Theme) => ({
   button: {
-    height: `calc(100% - ${theme.spacing(1)}px)`,
-    width: `calc(100% - ${theme.spacing(1)}px)`,
+    height: `calc(100% - ${theme.spacing(2)}px)`,
+    width: `calc(100% - ${theme.spacing(2)}px)`,
   },
   card: {
     minHeight: "100%",
