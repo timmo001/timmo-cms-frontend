@@ -21,7 +21,7 @@ import useStyles from "../assets/jss/components/layout";
 
 const Articles = (props) => {
   const page: number = Number(props.query.page) || 0;
-  const startFrom: number = page * 6;
+  const startFrom: number = page * 8;
 
   const classes = useStyles();
   return (
@@ -48,7 +48,7 @@ const Articles = (props) => {
               Page {page + 1}
             </Typography>
             <ArticlesComponent
-              articles={props.articles.slice(startFrom, startFrom + 6)}
+              articles={props.articles.slice(startFrom, startFrom + 8)}
             />
           </CardContent>
           <CardActions>
@@ -64,7 +64,7 @@ const Articles = (props) => {
             <div className={classes.flex} />
             <Link href={{ pathname: "/articles", query: { page: page + 1 } }}>
               <Button
-                disabled={props.articles.length <= startFrom + 6}
+                disabled={props.articles.length <= startFrom + 8}
                 color="primary"
                 size="large"
                 variant="text">

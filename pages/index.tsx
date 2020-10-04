@@ -105,12 +105,12 @@ const Home = (props) => {
             <Typography align="center" variant="h3" gutterBottom>
               {props.homepage.articles_heading}
             </Typography>
-            <Articles articles={props.articles.slice(0, 6)} />
+            <Articles articles={props.articles.slice(0, 8)} />
           </CardContent>
           <CardActions>
             <Link href={{ pathname: "/articles", query: { page: 1 } }}>
               <Button
-                disabled={props.articles.length <= 6}
+                disabled={props.articles.length <= 8}
                 color="primary"
                 size="large"
                 variant="text">

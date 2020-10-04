@@ -18,7 +18,7 @@ const Category = (props) => {
     (category) => category.id === props.query.id
   );
   const page: number = Number(props.query.page) || 0;
-  const startFrom: number = page * 6;
+  const startFrom: number = page * 8;
 
   const classes = useStyles();
 
@@ -69,7 +69,7 @@ const Category = (props) => {
               Page {page + 1}
             </Typography>
             <Articles
-              articles={category.articles.slice(startFrom, startFrom + 6)}
+              articles={category.articles.slice(startFrom, startFrom + 8)}
             />
           </CardContent>
           <CardActions>
@@ -93,7 +93,7 @@ const Category = (props) => {
                 query: { id: category.id, page: page + 1 },
               }}>
               <Button
-                disabled={category.articles.length <= startFrom + 6}
+                disabled={category.articles.length <= startFrom + 8}
                 color="primary"
                 size="large"
                 variant="text">
