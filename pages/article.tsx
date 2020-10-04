@@ -85,7 +85,11 @@ const Article = (props) => {
             )}
             <Typography component="div">
               {article.tags.map((tag: Tag, index: number) => (
-                <Chip key={index} label={tag.name} />
+                <Chip
+                  key={index}
+                  label={tag.name}
+                  style={{ backgroundColor: tag.color }}
+                />
               ))}
             </Typography>
             <Typography component="div">

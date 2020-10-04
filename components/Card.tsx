@@ -13,6 +13,7 @@ import useStyles from "../assets/jss/components/card";
 
 export interface Tag {
   name: string;
+  color: string;
 }
 
 const Card = ({ article }) => {
@@ -50,7 +51,11 @@ const Card = ({ article }) => {
             )}
             <Typography component="div">
               {article.tags.map((tag: Tag, index: number) => (
-                <Chip key={index} label={tag.name} />
+                <Chip
+                  key={index}
+                  label={tag.name}
+                  style={{ backgroundColor: tag.color }}
+                />
               ))}
             </Typography>
           </CardContent>

@@ -70,6 +70,7 @@ export async function getArticles() {
       }
       tags {
         name
+        color
       }
       title
       content
@@ -118,6 +119,7 @@ export async function getCategories() {
         }
         tags {
           name
+          color
         }
         title
         content
