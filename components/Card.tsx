@@ -23,15 +23,11 @@ const Card = ({ article }) => {
     <Link href={{ pathname: "/article", query: { id: article.id } }}>
       <ButtonBase className={classes.button}>
         <MuiCard className={classes.card} elevation={2} square={false}>
-          {article.thumbnail_media ? (
-            <CardMedia
-              className={classes.media}
-              image={getApiMediaUrl(article.thumbnail_media.url)}
-              title={article.thumbnail_media.alternativeText}
-            />
-          ) : (
-            ""
-          )}
+          <CardMedia
+            className={classes.media}
+            image={getApiMediaUrl(article.thumbnail_media?.url)}
+            title={article.thumbnail_media?.alternativeText}
+          />
           <CardContent>
             <Typography color="textSecondary" component="span" variant="button">
               {article.category?.name}

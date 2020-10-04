@@ -1,11 +1,13 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
-const cardStyle = makeStyles((_theme: Theme) => ({
+const cardStyle = makeStyles((theme: Theme) => ({
   button: {
-    width: "100%",
+    height: `calc(100% - ${theme.spacing(1)}px)`,
+    width: `calc(100% - ${theme.spacing(1)}px)`,
   },
   card: {
-    width: "100%",
+    minHeight: "100%",
+    minWidth: "100%",    
   },
   media: {
     height: 320,
