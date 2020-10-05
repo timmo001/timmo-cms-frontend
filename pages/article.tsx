@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 import Card from "@material-ui/core/Card";
@@ -13,13 +13,26 @@ import {
   getCategories,
   getGeneral,
 } from "../lib/api";
-import { Tag } from "../components/Card";
+import {
+  ArticleType,
+  CategoryType,
+  GeneralType,
+  QueryType,
+  TagType,
+} from "../components/Types";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-const Article = (props) => {
+export interface ArticleProps {
+  articles: ArticleType[];
+  categories: CategoryType[];
+  general: GeneralType;
+  query: QueryType;
+}
+
+function Article(props: ArticleProps): ReactElement {
   const article = props.articles.find(
     (article) => article.id === props.query.id
   );
@@ -49,14 +62,6 @@ const Article = (props) => {
       </Layout>
     );
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: article.showcase_slides || 3,
-    slidesToScroll: article.showcase_slides || 3,
-  };
-
   return (
     <Layout {...props} classes={classes}>
       <Parallax
@@ -83,7 +88,7 @@ const Article = (props) => {
               ""
             )}
             <Typography component="div">
-              {article.tags.map((tag: Tag, index: number) => (
+              {article.tags.map((tag: TagType, index: number) => (
                 <Chip
                   key={index}
                   label={tag.name}
@@ -111,7 +116,7 @@ const Article = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 Article.getInitialProps = async ({ query }) => {
   const articles = (await getArticles()) || [];

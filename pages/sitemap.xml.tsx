@@ -1,6 +1,12 @@
+import { GetServerSideProps } from "next";
 import { getAbout, getArticles, getCategories, getHomepage } from "../lib/api";
 
-const generateSitemap = (pages, origin) => {
+interface PageType {
+  path: string;
+  updated: string;
+}
+
+const generateSitemap = (pages: PageType[], origin: string): string => {
   let xml = "";
 
   pages.map((page) => {
@@ -17,13 +23,15 @@ const generateSitemap = (pages, origin) => {
 </urlset>`;
 };
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({
+  res,
+}): Promise<{ [key: string]: any }> {
   const about = await getAbout();
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const homepage = await getHomepage();
 
-  const data = [];
+  const data: PageType[] = [];
   data.push({ path: "", updated: homepage.updated_at });
   data.push({ path: "/about", updated: about.updated_at });
   articles.forEach((article) =>
@@ -43,9 +51,6 @@ export async function getServerSideProps({ res }) {
     data,
     "https://timmo-cms-frontend.vercel.app"
   );
-
-  console.log("Sitemap:");
-  console.log(sitemap);
 
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);

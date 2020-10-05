@@ -1,6 +1,15 @@
-import moment from "moment";
+import {
+  AboutType,
+  ArticleType,
+  CategoryType,
+  GeneralType,
+  HomepageType,
+} from "../components/Types";
 
-async function fetchAPI(query, props?): Promise<any> {
+async function fetchAPI(
+  query: string,
+  props?: { variables: any }
+): Promise<any> {
   const variables = props?.variables;
   const res = await fetch(`${process.env.API_URL}/graphql`, {
     method: "POST",
@@ -28,7 +37,7 @@ export function getApiMediaUrl(url: string): string {
   }${url}`;
 }
 
-export async function getAbout() {
+export async function getAbout(): Promise<AboutType> {
   const data = await fetchAPI(`query About {
     about {
       id
@@ -60,13 +69,14 @@ export async function getAbout() {
   return data.about;
 }
 
-export async function getArticles() {
+export async function getArticles(): Promise<ArticleType[]> {
   const data = await fetchAPI(`query Articles {
     articles(sort: "published_at:desc") {
       id
       category {
         id
         name
+        updated_at
       }
       tags {
         name
@@ -100,7 +110,7 @@ export async function getArticles() {
   return data.articles;
 }
 
-export async function getCategories() {
+export async function getCategories(): Promise<CategoryType[]> {
   const data = await fetchAPI(`query Categories {
     categories(sort: "name:asc") {
       id
@@ -151,20 +161,22 @@ export async function getCategories() {
   return data.categories;
 }
 
-export async function getGeneral() {
+export async function getGeneral(): Promise<GeneralType> {
   const data = await fetchAPI(`query General {
     general {
       footer_content
       header_media {
-        url
         alternativeText
+        caption
+        name
+        url
       }
     }
   }`);
   return data.general;
 }
 
-export async function getHomepage() {
+export async function getHomepage(): Promise<HomepageType> {
   const data = await fetchAPI(`query Homepage {
     homepage {
       articles_heading

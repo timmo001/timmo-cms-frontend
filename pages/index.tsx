@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Button from "@material-ui/core/Button";
@@ -17,13 +17,26 @@ import {
   getGeneral,
   getHomepage,
 } from "../lib/api";
+import {
+  ArticleType,
+  CategoryType,
+  GeneralType,
+  HomepageType,
+} from "../components/Types";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-const Home = (props) => {
+interface HomeProps {
+  articles: ArticleType[];
+  categories: CategoryType[];
+  general: GeneralType;
+  homepage: HomepageType;
+}
+
+function Home(props: HomeProps): ReactElement {
   const classes = useStyles();
 
   return (
@@ -106,7 +119,7 @@ const Home = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const articles = (await getArticles()) || [];

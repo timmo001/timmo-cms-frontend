@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Link from "next/link";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -8,12 +8,19 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl, getCategories, getGeneral } from "../lib/api";
+import { CategoryType, GeneralType, QueryType } from "../components/Types";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import useStyles from "../assets/jss/components/layout";
 
-const Category = (props) => {
+export interface ArticlesProps {
+  categories: CategoryType[];
+  general: GeneralType;
+  query: QueryType;
+}
+
+function Category(props: ArticlesProps): ReactElement {
   const category = props.categories.find(
     (category) => category.id === props.query.id
   );
@@ -105,7 +112,7 @@ const Category = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 Category.getInitialProps = async ({ query }) => {
   const categories = (await getCategories()) || [];

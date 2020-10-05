@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Avatar from "@material-ui/core/Avatar";
@@ -14,21 +14,21 @@ import {
   getCategories,
   getGeneral,
 } from "../lib/api";
+import { AboutType, CategoryType, GeneralType } from "../components/Types";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-const About = (props) => {
+export interface AboutProps {
+  about: AboutType;
+  categories: CategoryType[];
+  general: GeneralType;
+}
+
+function About(props: AboutProps): ReactElement {
   const classes = useStyles();
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: props.about.showcase_slides || 3,
-    slidesToScroll: props.about.showcase_slides || 3,
-  };
   return (
     <Layout {...props} classes={classes}>
       <Parallax
@@ -81,7 +81,7 @@ const About = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const about = await getAbout();

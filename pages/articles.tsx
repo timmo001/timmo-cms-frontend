@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Link from "next/link";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -14,12 +14,27 @@ import {
   getGeneral,
   getHomepage,
 } from "../lib/api";
+import {
+  ArticleType,
+  CategoryType,
+  GeneralType,
+  HomepageType,
+  QueryType,
+} from "../components/Types";
 import ArticlesComponent from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import useStyles from "../assets/jss/components/layout";
 
-const Articles = (props) => {
+export interface ArticlesProps {
+  articles: ArticleType[];
+  categories: CategoryType[];
+  general: GeneralType;
+  homepage: HomepageType;
+  query: QueryType;
+}
+
+function Articles(props: ArticlesProps): ReactElement {
   const page: number = Number(props.query.page) || 0;
   const startFrom: number = page * 9;
 
@@ -76,7 +91,7 @@ const Articles = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 Articles.getInitialProps = async ({ query }) => {
   const articles = (await getArticles()) || [];
