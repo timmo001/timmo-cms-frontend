@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
 import Avatar from "@material-ui/core/Avatar";
@@ -14,12 +14,19 @@ import {
   getCategories,
   getGeneral,
 } from "../lib/api";
+import { AboutType, CategoryType, GeneralType } from "../components/Types";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-function About(props) {
+export interface AboutProps {
+  about: AboutType;
+  categories: CategoryType[];
+  general: GeneralType;
+}
+
+function About(props: AboutProps): ReactElement {
   const classes = useStyles();
 
   return (

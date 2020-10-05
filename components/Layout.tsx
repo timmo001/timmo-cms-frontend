@@ -57,7 +57,7 @@ theme = responsiveFontSizes(theme);
 
 interface LayoutProps {
   categories: CategoryType[];
-  children: ReactElement;
+  children?: ReactElement[];
   classes: ClassNameMap;
   general: GeneralType;
 }

@@ -6,7 +6,7 @@ export interface AboutType {
   profile_name?: string;
   profile_subtitle?: string;
   showcase_media?: MediaType[];
-  showcase_slides?: string;
+  showcase_slides?: number;
   updated_at: string;
 }
 
@@ -22,11 +22,6 @@ export interface ArticleType {
   title: string;
   published_at: string;
   updated_at: string;
-}
-
-export interface TagType {
-  name: string;
-  color?: string;
 }
 
 export interface CategoryType {
@@ -57,4 +52,14 @@ export interface MediaType {
   caption?: string;
   name: string;
   url: string;
+}
+
+export interface QueryType {
+  id?: string;
+  page?: string;
+}
+
+export interface TagType {
+  name: string;
+  color?: string;
 }
