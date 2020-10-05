@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import { teal, indigo } from "@material-ui/core/colors";
@@ -8,6 +8,7 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import { ClassNameMap } from "@material-ui/styles";
 import { NoSsr } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -16,6 +17,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
+import { CategoryType, GeneralType } from "./Types";
 
 let theme = createMuiTheme({
   palette: {
@@ -53,7 +55,14 @@ let theme = createMuiTheme({
 });
 theme = responsiveFontSizes(theme);
 
-const Layout = (props) => {
+interface LayoutProps {
+  categories: CategoryType[];
+  children: ReactElement;
+  classes: ClassNameMap;
+  general: GeneralType;
+}
+
+function Layout(props: LayoutProps): ReactElement {
   const classes = props.classes;
 
   return (
@@ -121,6 +130,6 @@ const Layout = (props) => {
       </NoSsr>
     </>
   );
-};
+}
 
 export default Layout;

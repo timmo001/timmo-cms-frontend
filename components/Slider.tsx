@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Slick from "react-slick";
 
-import Image, { MediaType } from "./Image";
+import { MediaType } from "./Types";
+import Image from "./Image";
 import useStyles from "../assets/jss/components/layout";
 
 interface SliderProps {
@@ -9,7 +10,7 @@ interface SliderProps {
   slides: number;
 }
 
-const Slider = (props: SliderProps) => {
+function Slider(props: SliderProps): ReactElement {
   const classes = useStyles();
 
   const sliderSettings = {
@@ -30,6 +31,6 @@ const Slider = (props: SliderProps) => {
       ))}
     </Slick>
   );
-};
+}
 
 export default Slider;

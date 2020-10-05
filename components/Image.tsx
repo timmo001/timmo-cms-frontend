@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, ReactElement, useState } from "react";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -8,19 +8,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl } from "../lib/api";
+import { MediaType } from "./Types";
 import useStyles from "../assets/jss/components/layout";
-
-export interface MediaType {
-  url: string;
-  alternativeText: string;
-  caption: string;
-}
 
 interface SliderProps {
   media: MediaType;
 }
 
-const Image = (props: SliderProps) => {
+function Image({ media }: SliderProps): ReactElement {
   const [showDialog, setShowDialog] = useState<boolean>(false);
 
   const openMediaDialog = () => setShowDialog(true);
@@ -34,10 +29,10 @@ const Image = (props: SliderProps) => {
         <Card className={classes.galleryItemCard}>
           <CardMedia
             className={classes.galleryItemMedia}
-            image={getApiMediaUrl(props.media.url)}
-            title={props.media.alternativeText}
+            image={getApiMediaUrl(media.url)}
+            title={media.alternativeText}
           />
-          <Typography variant="h5">{props.media.alternativeText}</Typography>
+          <Typography variant="h5">{media.alternativeText}</Typography>
         </Card>
       </ButtonBase>
       <Dialog
@@ -50,26 +45,24 @@ const Image = (props: SliderProps) => {
         onClose={closeMediaDialog}>
         {showDialog ? (
           <Fragment>
-            {props.media.alternativeText ? (
+            {media.alternativeText ? (
               <DialogTitle>
-                <Typography variant="h3">
-                  {props.media.alternativeText}
-                </Typography>
+                <Typography variant="h3">{media.alternativeText}</Typography>
               </DialogTitle>
             ) : (
               ""
             )}
             <DialogContent>
-              {props.media.caption ? (
+              {media.caption ? (
                 <Typography variant="body1" gutterBottom>
-                  {props.media.caption}
+                  {media.caption}
                 </Typography>
               ) : (
                 ""
               )}
               <img
-                src={getApiMediaUrl(props.media.url)}
-                alt={props.media.alternativeText}
+                src={getApiMediaUrl(media.url)}
+                alt={media.alternativeText}
               />
             </DialogContent>
           </Fragment>
@@ -79,6 +72,6 @@ const Image = (props: SliderProps) => {
       </Dialog>
     </Fragment>
   );
-};
+}
 
 export default Image;

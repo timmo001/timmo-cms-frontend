@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,9 +11,26 @@ import Menu from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import { PropTypes } from "@material-ui/core";
 import useStyles from "../assets/jss/components/header";
 
-const Header = (props) => {
+type ColorExpanded = PropTypes.Color | "transparent";
+
+interface ChangeColorOnScroll {
+  color: ColorExpanded;
+  height: string | number;
+}
+
+interface HeaderProps {
+  absolute?: string;
+  brand?: string;
+  changeColorOnScroll?: ChangeColorOnScroll;
+  color?: ColorExpanded;
+  fixed?: boolean;
+  rightLinks?: ReactElement;
+}
+
+function Header(props: HeaderProps): ReactElement {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -98,6 +115,6 @@ const Header = (props) => {
       </Container>
     </AppBar>
   );
-};
+}
 
 export default Header;

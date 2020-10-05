@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useTheme } from "@material-ui/core/styles";
@@ -15,9 +15,14 @@ import {
   mdiTwitter,
 } from "@mdi/js";
 
+import { CategoryType } from "./Types";
 import useStyles from "../assets/jss/components/headerLinks";
 
-const HeaderLinks = (props) => {
+interface HeaderLinksProps {
+  categories: CategoryType[];
+}
+
+function HeaderLinks(props: HeaderLinksProps): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -30,7 +35,7 @@ const HeaderLinks = (props) => {
         </Link>
       </ListItem>
       <ListItem className={clsx(classes.listItem, classes.divider)} />
-      {props.categories.map(({ id, name }, index: number) => (
+      {props.categories.map(({ id, name }: CategoryType, index: number) => (
         <ListItem key={index} className={classes.listItem}>
           <Link href={{ pathname: "/category", query: { id } }}>
             <Button variant="text" className={classes.navLink}>
@@ -115,6 +120,6 @@ const HeaderLinks = (props) => {
       </ListItem>
     </List>
   );
-};
+}
 
 export default HeaderLinks;

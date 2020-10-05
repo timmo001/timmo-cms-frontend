@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Moment from "react-moment";
 import Link from "next/link";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -9,14 +9,14 @@ import MuiCard from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
 import { getApiMediaUrl } from "../lib/api";
+import { ArticleType, TagType } from "./Types";
 import useStyles from "../assets/jss/components/card";
 
-export interface Tag {
-  name: string;
-  color: string;
+interface CardProps {
+  article: ArticleType;
 }
 
-const Card = ({ article }) => {
+function Card({ article }: CardProps): ReactElement {
   const classes = useStyles();
 
   return (
@@ -46,7 +46,7 @@ const Card = ({ article }) => {
               ""
             )}
             <Typography component="div">
-              {article.tags.map((tag: Tag, index: number) => (
+              {article.tags.map((tag: TagType, index: number) => (
                 <Chip
                   key={index}
                   label={tag.name}
@@ -59,6 +59,6 @@ const Card = ({ article }) => {
       </ButtonBase>
     </Link>
   );
-};
+}
 
 export default Card;

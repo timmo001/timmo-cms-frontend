@@ -13,7 +13,6 @@ import {
   getCategories,
   getGeneral,
 } from "../lib/api";
-import { Tag } from "../components/Card";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
@@ -48,14 +47,6 @@ const Article = (props) => {
         </Container>
       </Layout>
     );
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: article.showcase_slides || 3,
-    slidesToScroll: article.showcase_slides || 3,
-  };
 
   return (
     <Layout {...props} classes={classes}>

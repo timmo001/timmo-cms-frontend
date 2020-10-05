@@ -19,16 +19,9 @@ import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-const About = (props) => {
+function About(props) {
   const classes = useStyles();
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: props.about.showcase_slides || 3,
-    slidesToScroll: props.about.showcase_slides || 3,
-  };
   return (
     <Layout {...props} classes={classes}>
       <Parallax
@@ -81,7 +74,7 @@ const About = (props) => {
       </Container>
     </Layout>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const about = await getAbout();
