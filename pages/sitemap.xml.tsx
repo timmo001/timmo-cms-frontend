@@ -52,9 +52,6 @@ export async function getServerSideProps({
     "https://timmo-cms-frontend.vercel.app"
   );
 
-  console.log("Sitemap:");
-  console.log(sitemap);
-
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);
   res.end();
