@@ -23,7 +23,9 @@ const generateSitemap = (pages: PageType[], origin: string): string => {
 </urlset>`;
 };
 
-export async function getServerSideProps({ res }): Promise<GetServerSideProps> {
+export async function getServerSideProps({
+  res,
+}): Promise<{ [key: string]: any }> {
   const about = await getAbout();
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
