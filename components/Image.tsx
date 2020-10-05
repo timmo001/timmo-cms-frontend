@@ -68,7 +68,6 @@ const Image = (props: SliderProps) => {
                 ""
               )}
               <img
-                className={classes.dialogMedia}
                 src={getApiMediaUrl(props.media.url)}
                 alt={props.media.alternativeText}
               />
