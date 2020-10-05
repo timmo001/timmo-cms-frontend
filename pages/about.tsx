@@ -1,11 +1,9 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
-import Slider from "react-slick";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
@@ -18,6 +16,7 @@ import {
 } from "../lib/api";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
+import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
 const About = (props) => {
@@ -70,19 +69,10 @@ const About = (props) => {
         {props.about.showcase_media.length > 0 ? (
           <Card>
             <CardContent>
-              <Slider className={classes.slider} {...sliderSettings}>
-                {props.about.showcase_media.map(
-                  ({ url, alternativeText }, index: number) => (
-                    <div className={classes.sliderMediaContainer} key={index}>
-                      <CardMedia
-                        className={classes.sliderMedia}
-                        image={getApiMediaUrl(url)}
-                        title={alternativeText}
-                      />
-                    </div>
-                  )
-                )}
-              </Slider>
+              <Slider
+                media={props.about.showcase_media}
+                slides={props.about.showcase_slides}
+              />
             </CardContent>
           </Card>
         ) : (
