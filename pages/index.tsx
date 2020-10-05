@@ -1,12 +1,10 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import Slider from "react-slick";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
@@ -22,18 +20,11 @@ import {
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
+import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
 const Home = (props) => {
   const classes = useStyles();
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: props.homepage.showcase_slides || 3,
-    slidesToScroll: props.homepage.showcase_slides || 3,
-  };
 
   return (
     <Layout {...props} classes={classes}>
@@ -84,23 +75,10 @@ const Home = (props) => {
               ) : (
                 ""
               )}
-              {props.homepage.showcase_media.length > 0 ? (
-                <Slider className={classes.slider} {...sliderSettings}>
-                  {props.homepage.showcase_media.map(
-                    ({ url, alternativeText }, index: number) => (
-                      <div className={classes.sliderMediaContainer} key={index}>
-                        <CardMedia
-                          className={classes.sliderMedia}
-                          image={getApiMediaUrl(url)}
-                          title={alternativeText}
-                        />
-                      </div>
-                    )
-                  )}
-                </Slider>
-              ) : (
-                ""
-              )}
+              <Slider
+                media={props.homepage.showcase_media}
+                slides={props.homepage.showcase_slides}
+              />
             </CardContent>
           </Card>
         ) : (

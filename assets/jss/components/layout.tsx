@@ -44,6 +44,17 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     height: 420,
     backgroundSize: "contain",
   },
+  galleryItem: {
+    width: "100%",
+  },
+  galleryItemCard: {
+    width: "100%",
+  },
+  galleryItemMedia: {
+    width: "100%",
+    height: 420,
+    backgroundSize: "contain",
+  },
   welcomeMessage: {
     margin: theme.spacing(2, 1),
   },

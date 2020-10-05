@@ -1,10 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
-import Slider from "react-slick";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -18,6 +16,7 @@ import {
 import { Tag } from "../components/Card";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
+import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
 const Article = (props) => {
@@ -100,19 +99,10 @@ const Article = (props) => {
         {article.showcase_media.length > 0 ? (
           <Card>
             <CardContent>
-              <Slider className={classes.slider} {...sliderSettings}>
-                {article.showcase_media.map(
-                  ({ url, alternativeText }, index: number) => (
-                    <div className={classes.sliderMediaContainer} key={index}>
-                      <CardMedia
-                        className={classes.sliderMedia}
-                        image={getApiMediaUrl(url)}
-                        title={alternativeText}
-                      />
-                    </div>
-                  )
-                )}
-              </Slider>
+              <Slider
+                media={article.showcase_media}
+                slides={article.showcase_slides}
+              />
             </CardContent>
           </Card>
         ) : (
