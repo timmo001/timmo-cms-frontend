@@ -49,6 +49,11 @@ function About(props: AboutProps): ReactElement {
             className={classes.profile}
             alt={props.about.profile_name}
             src={props.about.profile_media?.url}
+            style={{
+              position: "absolute",
+              top: -160,
+              left: "calc(50% - 140px)",
+            }}
           />
           <CardContent className={classes.cardContentOverflow}>
             <Typography component="h2" variant="h3">

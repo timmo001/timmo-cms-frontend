@@ -14,9 +14,6 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     },
   },
   profile: {
-    position: "absolute",
-    top: -160,
-    left: "calc(50% - 140px)",
     height: "280px !important",
     width: "280px !important",
   },
