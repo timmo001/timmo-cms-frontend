@@ -69,7 +69,7 @@ function About(props: AboutProps): ReactElement {
           <CardContent>
             {props.about.updated_at ? (
               <Typography variant="subtitle1" color="textSecondary">
-                {"Last updated on "}
+                {"Last updated: "}
                 <Moment format="Do MMMM YYYY">{props.about.updated_at}</Moment>
               </Typography>
             ) : (
