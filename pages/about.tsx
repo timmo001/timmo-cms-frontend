@@ -65,7 +65,7 @@ function About(props: AboutProps): ReactElement {
             </Typography>
             {props.about.updated_at ? (
               <Typography variant="subtitle1" color="textSecondary">
-                Last updated at{" "}
+                {"Last updated on "}
                 <Moment format="Do MMMM YYYY">{props.about.updated_at}</Moment>
               </Typography>
             ) : (
