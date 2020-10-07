@@ -66,7 +66,7 @@ function About(props: AboutProps): ReactElement {
           </CardContent>
         </Card>
         <Card>
-          <CardContent className={classes.cardContentOverflow}>
+          <CardContent>
             {props.about.updated_at ? (
               <Typography variant="subtitle1" color="textSecondary">
                 {"Last updated on "}
