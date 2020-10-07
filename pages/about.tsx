@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
+import Moment from "react-moment";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -62,10 +63,14 @@ function About(props: AboutProps): ReactElement {
             <Typography component="h3" variant="h5">
               {props.about.profile_subtitle}
             </Typography>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
+            {props.about.updated_at ? (
+              <Typography variant="subtitle1" color="textSecondary">
+                Last updated at{" "}
+                <Moment format="Do MMMM YYYY">{props.about.updated_at}</Moment>
+              </Typography>
+            ) : (
+              ""
+            )}
             <Typography component="div">
               <ReactMarkdown source={props.about.content} escapeHtml={false} />
             </Typography>
