@@ -17,8 +17,8 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     position: "absolute",
     top: -160,
     left: "calc(50% - 140px)",
-    height: 280,
-    width: 280,
+    height: "280px !important",
+    width: "280px !important",
   },
   name: {
     marginTop: 80,
