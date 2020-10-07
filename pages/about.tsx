@@ -63,6 +63,10 @@ function About(props: AboutProps): ReactElement {
             <Typography component="h3" variant="h5">
               {props.about.profile_subtitle}
             </Typography>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className={classes.cardContentOverflow}>
             {props.about.updated_at ? (
               <Typography variant="subtitle1" color="textSecondary">
                 {"Last updated on "}
