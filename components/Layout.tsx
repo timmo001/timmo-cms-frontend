@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import Head from "next/head";
-import ReactMarkdown from "react-markdown";
 import { teal, indigo } from "@material-ui/core/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {
@@ -15,9 +14,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
+import { CategoryType, GeneralType } from "./Types";
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
-import { CategoryType, GeneralType } from "./Types";
+import Markdown from "./Markdown";
 
 let theme = createMuiTheme({
   palette: {
@@ -135,7 +135,7 @@ function Layout(props: LayoutProps): ReactElement {
               <Card>
                 <CardContent>
                   <Typography component="div">
-                    <ReactMarkdown
+                    <Markdown
                       source={props.general.footer_content}
                       escapeHtml={false}
                     />

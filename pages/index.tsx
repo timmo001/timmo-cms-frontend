@@ -8,7 +8,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
-import ReactMarkdown from "react-markdown";
 
 import {
   getApiMediaUrl,
@@ -25,6 +24,7 @@ import {
 } from "../components/Types";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
+import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
@@ -63,7 +63,7 @@ function Home(props: HomeProps): ReactElement {
                 color="textPrimary"
                 component="div"
                 variant="h4">
-                <ReactMarkdown
+                <Markdown
                   source={props.homepage.welcome_message}
                   escapeHtml={false}
                 />

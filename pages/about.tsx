@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
-import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
@@ -17,6 +16,7 @@ import {
 } from "../lib/api";
 import { AboutType, CategoryType, GeneralType } from "../components/Types";
 import Layout from "../components/Layout";
+import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
@@ -82,7 +82,7 @@ function About(props: AboutProps): ReactElement {
               ""
             )}
             <Typography component="div">
-              <ReactMarkdown source={props.about.content} escapeHtml={false} />
+              <Markdown source={props.about.content} escapeHtml={false} />
             </Typography>
           </CardContent>
         </Card>
