@@ -12,19 +12,19 @@ import { MediaType } from "./Types";
 import useStyles from "../assets/jss/components/layout";
 
 interface SliderProps {
-  hideCaption: boolean;
-  hidePaper: boolean;
-  hideTitle: boolean;
-  showAsImage: boolean;
+  hideCaption?: boolean;
+  hidePaper?: boolean;
+  hideTitle?: boolean;
   media: MediaType;
+  showAsImage?: boolean;
 }
 
 function Image({
   hideCaption,
   hidePaper,
   hideTitle,
-  showAsImage,
   media,
+  showAsImage,
 }: SliderProps): ReactElement {
   const [showDialog, setShowDialog] = useState<boolean>(false);
 

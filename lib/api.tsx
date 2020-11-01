@@ -33,7 +33,7 @@ async function fetchAPI(
 
 export function getApiMediaUrl(url: string): string {
   return `${
-    url.startsWith("http")
+    url && url.startsWith("http")
       ? ""
       : process.env.NODE_ENV !== "production"
       ? process.env.API_URL
