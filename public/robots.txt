@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://timmo-cms-frontend.vercel.app/sitemap.xml
+Sitemap: https://timmo.dev/sitemap.xml

@@ -101,7 +101,7 @@ function Article(props: ArticleProps): ReactElement {
               tag.name.includes("WIP")
             ) > -1 ? (
               <Typography component="div">
-                <Alert severity="info">
+                <Alert severity="warning">
                   This article is a work in progress. The contents of the
                   article will change and there will likely be missing content.
                 </Alert>

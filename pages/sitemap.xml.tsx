@@ -49,7 +49,7 @@ export async function getServerSideProps({
 
   const sitemap = generateSitemap(
     data,
-    "https://timmo-cms-frontend.vercel.app"
+    "https://timmo.dev"
   );
 
   res.setHeader("Content-Type", "text/xml");
