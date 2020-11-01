@@ -97,17 +97,17 @@ function Article(props: ArticleProps): ReactElement {
                 />
               ))}
             </Typography>
+            {article.tags.findIndex((tag: TagType) =>
+              tag.name.includes("WIP")
+            ) > -1 ? (
+              <Alert severity="warning" variant="outlined">
+                This article is a work in progress. The contents of the article
+                will change and there will likely be missing content.
+              </Alert>
+            ) : (
+              ""
+            )}
             <Typography component="div">
-              {article.tags.findIndex((tag: TagType) =>
-                tag.name.includes("WIP")
-              ) > -1 ? (
-                <Alert severity="warning" variant="outlined">
-                  This article is a work in progress. The contents of the
-                  article will change and there will likely be missing content.
-                </Alert>
-              ) : (
-                ""
-              )}
               <ReactMarkdown source={article.content} escapeHtml={false} />
             </Typography>
           </CardContent>
