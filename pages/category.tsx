@@ -69,7 +69,7 @@ function Category(props: ArticlesProps): ReactElement {
         maxWidth="xl">
         <Card>
           <CardContent>
-            <Typography align="center" variant="h3">
+            <Typography align="center" component="h1" variant="h3">
               {category.name}
             </Typography>
             <Typography align="center" component="h4" variant="h5" gutterBottom>

@@ -85,7 +85,9 @@ function Article(props: ArticleProps): ReactElement {
         maxWidth="xl">
         <Card>
           <CardContent>
-            <Typography variant="h3">{article.title}</Typography>
+            <Typography component="h1" variant="h3">
+              {article.title}
+            </Typography>
             {article.published_at ? (
               <Typography variant="subtitle1" color="textSecondary">
                 <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
