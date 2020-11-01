@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
+import Alert from "@material-ui/lab/Alert/Alert";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
@@ -87,7 +88,7 @@ function Article(props: ArticleProps): ReactElement {
             ) : (
               ""
             )}
-            <Typography component="div">
+            <Typography component="div" gutterBottom>
               {article.tags.map((tag: TagType, index: number) => (
                 <Chip
                   key={index}
@@ -96,6 +97,19 @@ function Article(props: ArticleProps): ReactElement {
                 />
               ))}
             </Typography>
+            {article.tags.findIndex((tag: TagType) =>
+              tag.name.includes("WIP")
+            ) > -1 ? (
+              <Typography component="div">
+                <Alert severity="info">
+                  This article is a work in progress. The contents of this
+                  article will likely change and there will likely be missing
+                  content.
+                </Alert>
+              </Typography>
+            ) : (
+              ""
+            )}
             <Typography component="div">
               <ReactMarkdown source={article.content} escapeHtml={false} />
             </Typography>
