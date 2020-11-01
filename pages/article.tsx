@@ -100,7 +100,10 @@ function Article(props: ArticleProps): ReactElement {
             {article.tags.findIndex((tag: TagType) =>
               tag.name.includes("WIP")
             ) > -1 ? (
-              <Alert severity="warning" variant="outlined">
+              <Alert
+                className={classes.alert}
+                severity="warning"
+                variant="outlined">
                 This article is a work in progress. The contents of the article
                 will change and there will likely be missing content.
               </Alert>

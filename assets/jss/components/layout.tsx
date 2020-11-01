@@ -1,6 +1,9 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const layoutStyle = makeStyles((theme: Theme) => ({
+  alert: {
+    marginTop: theme.spacing(2),
+  },
   cardOverflow: {
     overflow: "visible",
   },

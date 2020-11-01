@@ -28,11 +28,6 @@ let theme = createMuiTheme({
     tonalOffset: 0.2,
   },
   overrides: {
-    MuiAlert: {
-      root: {
-        marginTop: 16,
-      },
-    },
     MuiCard: {
       root: {
         margin: 8,
