@@ -83,7 +83,10 @@ function Header(props: HeaderProps): ReactElement {
         <Toolbar className={classes.container}>
           <Link href="/">
             <Button>
-              <Typography className={classes.title} component="h1" variant="h4">
+              <Typography
+                className={classes.title}
+                component="div"
+                variant="h4">
                 {brand}
               </Typography>
             </Button>
