@@ -102,9 +102,8 @@ function Article(props: ArticleProps): ReactElement {
             ) > -1 ? (
               <Typography component="div">
                 <Alert severity="info">
-                  This article is a work in progress. The contents of this
-                  article will likely change and there will likely be missing
-                  content.
+                  This article is a work in progress. The contents of the
+                  article will change and there will likely be missing content.
                 </Alert>
               </Typography>
             ) : (
