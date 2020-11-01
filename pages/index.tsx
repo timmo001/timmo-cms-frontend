@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 
 import {
+  getAbout,
   getApiMediaUrl,
   getArticles,
   getCategories,
@@ -17,6 +18,7 @@ import {
   getHomepage,
 } from "../lib/api";
 import {
+  AboutType,
   ArticleType,
   CategoryType,
   GeneralType,
@@ -30,6 +32,7 @@ import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
 interface HomeProps {
+  about: AboutType;
   articles: ArticleType[];
   categories: CategoryType[];
   general: GeneralType;
@@ -40,7 +43,12 @@ function Home(props: HomeProps): ReactElement {
   const classes = useStyles();
 
   return (
-    <Layout {...props} classes={classes} title="Home" url="https://timmo.dev">
+    <Layout
+      {...props}
+      classes={classes}
+      title="Home"
+      url="https://timmo.dev"
+      description={`${props.about.profile_name} - ${props.about.profile_subtitle}`}>
       <Parallax
         small
         filter
@@ -122,12 +130,13 @@ function Home(props: HomeProps): ReactElement {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  const about = await getAbout();
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
   const homepage = await getHomepage();
   return {
-    props: { articles, categories, general, homepage },
+    props: { about, articles, categories, general, homepage },
     revalidate: 1,
   };
 };
