@@ -45,7 +45,7 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     backgroundSize: "contain",
   },
   galleryItem: {
-    width: "100%",
+    // width: "100%",
   },
   galleryItemCard: {
     width: "100%",

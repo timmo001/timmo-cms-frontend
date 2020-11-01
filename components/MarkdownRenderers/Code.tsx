@@ -2,12 +2,12 @@ import React, { ReactElement } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { shadesOfPurple } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-interface CodeBlockProps {
+interface CodeProps {
   language: string;
   value: string;
 }
 
-function CodeBlock(props: CodeBlockProps): ReactElement {
+function Code(props: CodeProps): ReactElement {
   return (
     <SyntaxHighlighter language={props.language} style={shadesOfPurple}>
       {props.value}
@@ -15,4 +15,4 @@ function CodeBlock(props: CodeBlockProps): ReactElement {
   );
 }
 
-export default CodeBlock;
+export default Code;

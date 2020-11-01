@@ -12,10 +12,20 @@ import { MediaType } from "./Types";
 import useStyles from "../assets/jss/components/layout";
 
 interface SliderProps {
+  hideCaption: boolean;
+  hidePaper: boolean;
+  hideTitle: boolean;
+  showAsImage: boolean;
   media: MediaType;
 }
 
-function Image({ media }: SliderProps): ReactElement {
+function Image({
+  hideCaption,
+  hidePaper,
+  hideTitle,
+  showAsImage,
+  media,
+}: SliderProps): ReactElement {
   const [showDialog, setShowDialog] = useState<boolean>(false);
 
   const openMediaDialog = () => setShowDialog(true);
@@ -26,13 +36,21 @@ function Image({ media }: SliderProps): ReactElement {
   return (
     <Fragment>
       <ButtonBase className={classes.galleryItem} onClick={openMediaDialog}>
-        <Card className={classes.galleryItemCard}>
-          <CardMedia
-            className={classes.galleryItemMedia}
-            image={getApiMediaUrl(media.url)}
-            title={media.alternativeText}
-          />
-          <Typography variant="h5">{media.alternativeText}</Typography>
+        <Card className={classes.galleryItemCard} elevation={hidePaper ? 0 : 1}>
+          {showAsImage ? (
+            <img src={getApiMediaUrl(media.url)} alt={media.alternativeText} />
+          ) : (
+            <CardMedia
+              className={classes.galleryItemMedia}
+              image={getApiMediaUrl(media.url)}
+              title={media.alternativeText}
+            />
+          )}
+          {!hideTitle ? (
+            <Typography variant="h5">{media.alternativeText}</Typography>
+          ) : (
+            ""
+          )}
         </Card>
       </ButtonBase>
       <Dialog
@@ -45,7 +63,7 @@ function Image({ media }: SliderProps): ReactElement {
         onClose={closeMediaDialog}>
         {showDialog ? (
           <Fragment>
-            {media.alternativeText ? (
+            {!hideTitle && media.alternativeText ? (
               <DialogTitle>
                 <Typography variant="h3">{media.alternativeText}</Typography>
               </DialogTitle>
@@ -53,7 +71,7 @@ function Image({ media }: SliderProps): ReactElement {
               ""
             )}
             <DialogContent>
-              {media.caption ? (
+              {!hideCaption && media.caption ? (
                 <Typography variant="body1" gutterBottom>
                   {media.caption}
                 </Typography>

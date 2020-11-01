@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 
-import CodeBlock from "./MarkdownRenderers/CodeBlock";
+import Code from "./MarkdownRenderers/Code";
+import Image from "./MarkdownRenderers/Image";
 
 interface MarkdownProps {
   source: string;
@@ -13,7 +14,7 @@ function Markdown(props: MarkdownProps): ReactElement {
     <ReactMarkdown
       source={props.source}
       escapeHtml={props.escapeHtml}
-      renderers={{ code: CodeBlock }}
+      renderers={{ code: Code, image: Image }}
     />
   );
 }
