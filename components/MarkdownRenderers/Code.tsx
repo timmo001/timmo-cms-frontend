@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { shadesOfPurple } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { shadesOfPurple } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 interface CodeProps {
   language: string;
