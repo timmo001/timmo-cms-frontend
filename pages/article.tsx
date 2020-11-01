@@ -69,7 +69,8 @@ function Article(props: ArticleProps): ReactElement {
       classes={classes}
       description={`${article.title} - ${article.content.split("\n")[0]}`}
       keywords={article.tags.map((tag: TagType) => tag.name).join(", ")}
-      title={article.title}>
+      title={article.title}
+      url={`https://timmo.dev/article?id=${article.id}`}>
       <Parallax
         small
         filter

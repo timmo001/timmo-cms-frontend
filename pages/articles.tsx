@@ -43,7 +43,8 @@ function Articles(props: ArticlesProps): ReactElement {
     <Layout
       {...props}
       classes={classes}
-      title={`Page ${page + 1} - ${props.homepage.articles_heading}`}>
+      title={`Page ${page + 1} - ${props.homepage.articles_heading}`}
+      url={`https://timmo.dev/articles?page=${page}`}>
       <Parallax
         small
         filter

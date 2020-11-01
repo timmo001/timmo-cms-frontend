@@ -53,7 +53,11 @@ function Category(props: ArticlesProps): ReactElement {
     );
 
   return (
-    <Layout {...props} classes={classes} title={category.name}>
+    <Layout
+      {...props}
+      classes={classes}
+      title={category.name}
+      url={`https://timmo.dev/category?id=${category.id}`}>
       <Parallax
         small
         filter

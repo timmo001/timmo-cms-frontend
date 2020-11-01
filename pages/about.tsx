@@ -36,7 +36,8 @@ function About(props: AboutProps): ReactElement {
       classes={classes}
       description={`About Me - ${props.about.profile_name} - ${props.about.profile_subtitle}`}
       keywords="Timmo, Aidan Timson, About Me, Bio, Portfolio"
-      title="About Me">
+      title="About Me"
+      url="https://timmo.dev/about">
       <Parallax
         small
         filter

@@ -63,6 +63,7 @@ interface LayoutProps {
   general: GeneralType;
   keywords?: string;
   title?: string;
+  url?: string;
 }
 
 function Layout(props: LayoutProps): ReactElement {
@@ -91,6 +92,7 @@ function Layout(props: LayoutProps): ReactElement {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#009688" />
+        <link rel="canonical" href={props.url} />
         <meta name="author" content="Aidan Timson" />
         <meta
           name="description"
