@@ -59,7 +59,10 @@ interface LayoutProps {
   categories: CategoryType[];
   children?: ReactElement[];
   classes: ClassNameMap;
+  description?: string;
   general: GeneralType;
+  keywords?: string;
+  title?: string;
 }
 
 function Layout(props: LayoutProps): ReactElement {
@@ -68,7 +71,7 @@ function Layout(props: LayoutProps): ReactElement {
   return (
     <>
       <Head>
-        <title>Timmo</title>
+        <title>{props.title ? `${props.title} - Timmo` : `Timmo`}</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -88,9 +91,24 @@ function Layout(props: LayoutProps): ReactElement {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#009688" />
-        <meta name="description" content="Aidan Timson aka Timmo" />
+        <meta name="author" content="Aidan Timson" />
+        <meta
+          name="description"
+          content={
+            props.description
+              ? `${props.description}`
+              : props.title
+              ? `${props.title} - Timmo`
+              : `Timmo`
+          }
+        />
+        <meta
+          name="keywords"
+          content={props.keywords ? `${props.keywords}` : `timmo, developer`}
+        />
         <meta name="msapplication-TileColor" content="#009688" />
         <meta name="theme-color" content="#009688" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <NoSsr>
         <ThemeProvider theme={theme}>

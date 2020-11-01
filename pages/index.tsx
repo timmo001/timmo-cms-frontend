@@ -40,7 +40,7 @@ function Home(props: HomeProps): ReactElement {
   const classes = useStyles();
 
   return (
-    <Layout {...props} classes={classes}>
+    <Layout {...props} classes={classes} title="Home">
       <Parallax
         small
         filter

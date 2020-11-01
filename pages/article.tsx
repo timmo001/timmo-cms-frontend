@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 import Alert from "@material-ui/lab/Alert/Alert";
@@ -34,7 +34,7 @@ export interface ArticleProps {
 }
 
 function Article(props: ArticleProps): ReactElement {
-  const article = props.articles.find(
+  const article: ArticleType = props.articles.find(
     (article) => article.id === props.query.id
   );
 
@@ -64,7 +64,12 @@ function Article(props: ArticleProps): ReactElement {
     );
 
   return (
-    <Layout {...props} classes={classes}>
+    <Layout
+      {...props}
+      classes={classes}
+      description={`${article.title} - ${article.content.split("\n")[0]}`}
+      keywords={article.tags.map((tag: TagType) => tag.name).join(", ")}
+      title={article.title}>
       <Parallax
         small
         filter

@@ -31,7 +31,12 @@ function About(props: AboutProps): ReactElement {
   const classes = useStyles();
 
   return (
-    <Layout {...props} classes={classes}>
+    <Layout
+      {...props}
+      classes={classes}
+      description={`About Me - ${props.about.profile_name} - ${props.about.profile_subtitle}`}
+      keywords="Timmo, Aidan Timson, About Me, Bio, Portfolio"
+      title="About Me">
       <Parallax
         small
         filter

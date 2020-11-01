@@ -40,7 +40,10 @@ function Articles(props: ArticlesProps): ReactElement {
 
   const classes = useStyles();
   return (
-    <Layout {...props} classes={classes}>
+    <Layout
+      {...props}
+      classes={classes}
+      title={`Page ${page + 1} - ${props.homepage.articles_heading}`}>
       <Parallax
         small
         filter
