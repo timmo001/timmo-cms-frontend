@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import Code from "./MarkdownRenderers/Code";
 import Image from "./MarkdownRenderers/Image";
+import Link from "./MarkdownRenderers/Link";
 
 interface MarkdownProps {
   source: string;
@@ -14,7 +15,7 @@ function Markdown(props: MarkdownProps): ReactElement {
     <ReactMarkdown
       source={props.source}
       escapeHtml={props.escapeHtml}
-      renderers={{ code: Code, image: Image }}
+      renderers={{ code: Code, image: Image, link: Link }}
     />
   );
 }
