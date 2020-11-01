@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 import Alert from "@material-ui/lab/Alert/Alert";
@@ -21,6 +21,7 @@ import {
   QueryType,
   TagType,
 } from "../components/Types";
+import CodeBlock from "../components/CodeBlock";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
@@ -119,7 +120,11 @@ function Article(props: ArticleProps): ReactElement {
               ""
             )}
             <Typography component="div">
-              <ReactMarkdown source={article.content} escapeHtml={false} />
+              <ReactMarkdown
+                source={article.content}
+                escapeHtml={false}
+                renderers={{ code: CodeBlock }}
+              />
             </Typography>
           </CardContent>
         </Card>
