@@ -35,7 +35,9 @@ function Image({
 
   return (
     <Fragment>
-      <ButtonBase className={classes.galleryItem} onClick={openMediaDialog}>
+      <ButtonBase
+        className={!showAsImage ? classes.galleryItem : ""}
+        onClick={openMediaDialog}>
         <Card className={classes.galleryItemCard} elevation={hidePaper ? 0 : 1}>
           {showAsImage ? (
             <img src={getApiMediaUrl(media.url)} alt={media.alternativeText} />
