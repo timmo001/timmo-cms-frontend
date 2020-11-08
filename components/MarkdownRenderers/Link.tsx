@@ -16,6 +16,7 @@ function Link(props: LinkProps): ReactElement {
   return (
     <a
       href={props.href}
+      rel="noreferrer"
       target={
         props.href.startsWith(
           `${window.location.protocol}//${window.location.host}`
