@@ -1,13 +1,15 @@
 import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Typography,
+} from "@material-ui/core";
 
 import {
   getAbout,
@@ -30,6 +32,7 @@ import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
+import ErrorLayout from "../components/ErrorLayout";
 
 interface HomeProps {
   about: AboutType;
@@ -41,6 +44,8 @@ interface HomeProps {
 
 function Home(props: HomeProps): ReactElement {
   const classes = useStyles();
+
+  if (!props.about) return <ErrorLayout classes={classes} />;
 
   return (
     <Layout

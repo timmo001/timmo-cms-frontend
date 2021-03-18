@@ -1,11 +1,13 @@
 import React, { ReactElement } from "react";
 import Moment from "react-moment";
-import Alert from "@material-ui/lab/Alert/Alert";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Chip from "@material-ui/core/Chip";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
+import {
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Typography,
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 
 import {
   getApiMediaUrl,

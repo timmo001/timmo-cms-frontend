@@ -1,11 +1,13 @@
 import React, { Fragment, ReactElement, useState } from "react";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography";
+import {
+  ButtonBase,
+  Card,
+  CardMedia,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@material-ui/core";
 
 import { getApiMediaUrl } from "../lib/api";
 import { MediaType } from "./Types";
