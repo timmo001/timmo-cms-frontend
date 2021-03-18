@@ -6,7 +6,7 @@ import useStyles from "../assets/jss/components/parallax";
 interface ParallaxProps {
   children?: ReactElement;
   filter: boolean;
-  image: string;
+  image?: string;
   small: boolean;
 }
 

@@ -32,6 +32,7 @@ import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
+import ErrorLayout from "../components/ErrorLayout";
 
 interface HomeProps {
   about: AboutType;
@@ -43,6 +44,8 @@ interface HomeProps {
 
 function Home(props: HomeProps): ReactElement {
   const classes = useStyles();
+
+  if (!props.about) return <ErrorLayout classes={classes} />;
 
   return (
     <Layout
