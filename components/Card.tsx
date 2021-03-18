@@ -1,12 +1,14 @@
 import React, { ReactElement } from "react";
 import Moment from "react-moment";
 import Link from "next/link";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Chip from "@material-ui/core/Chip";
-import MuiCard from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
+import {
+  ButtonBase,
+  Card as MuiCard,
+  CardContent,
+  CardMedia,
+  Chip,
+  Typography,
+} from "@material-ui/core";
 
 import { getApiMediaUrl } from "../lib/api";
 import { ArticleType, TagType } from "./Types";

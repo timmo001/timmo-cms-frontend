@@ -8,11 +8,13 @@ import {
   ThemeProvider,
 } from "@material-ui/core/styles";
 import { ClassNameMap } from "@material-ui/styles";
-import { NoSsr } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
+import {
+  Card,
+  CardContent,
+  Container,
+  NoSsr,
+  Typography,
+} from "@material-ui/core";
 
 import { CategoryType, GeneralType } from "./Types";
 import Header from "./Header";

@@ -2,10 +2,7 @@ import React, { ReactElement } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useTheme } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
+import { Button, List, ListItem, Tooltip } from "@material-ui/core";
 import Icon from "@mdi/react";
 import {
   mdiEmail,

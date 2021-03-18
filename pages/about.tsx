@@ -1,11 +1,13 @@
 import React, { ReactElement } from "react";
 import { GetStaticProps } from "next";
 import Moment from "react-moment";
-import Avatar from "@material-ui/core/Avatar";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Container,
+  Typography,
+} from "@material-ui/core";
 
 import {
   getAbout,

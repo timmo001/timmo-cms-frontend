@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid } from "@material-ui/core";
 
 import { ArticleType } from "./Types";
 import Card from "./Card";
