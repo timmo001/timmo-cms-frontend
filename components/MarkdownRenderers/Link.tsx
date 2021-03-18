@@ -1,4 +1,3 @@
-import { mdiConsoleLine } from "@mdi/js";
 import React, { ReactElement } from "react";
 
 interface LinkProps {
@@ -7,12 +6,6 @@ interface LinkProps {
 }
 
 function Link(props: LinkProps): ReactElement {
-  console.log(
-    "link:",
-    props.href,
-    `${window.location.protocol}//${window.location.host}`
-  );
-
   return (
     <a
       href={props.href}
