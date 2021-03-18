@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { getAbout, getArticles, getCategories, getHomepage } from "../lib/api";
 
 interface PageType {
@@ -47,10 +46,7 @@ export async function getServerSideProps({
     })
   );
 
-  const sitemap = generateSitemap(
-    data,
-    "https://timmo.dev"
-  );
+  const sitemap = generateSitemap(data, "https://timmo.dev");
 
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);
