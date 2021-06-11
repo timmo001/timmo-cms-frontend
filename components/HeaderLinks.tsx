@@ -7,7 +7,6 @@ import Icon from "@mdi/react";
 import {
   mdiEmail,
   mdiGithub,
-  mdiHomeAssistant,
   mdiTwitch,
   mdiTwitter,
 } from "@mdi/js";
@@ -81,23 +80,6 @@ function HeaderLinks(props: HeaderLinksProps): ReactElement {
             target="_blank">
             <Icon
               path={mdiTwitch}
-              color={theme.palette.text.primary}
-              size={1}
-            />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          title="Home Assistant Community"
-          classes={{ tooltip: classes.tooltip }}>
-          <Button
-            variant="text"
-            className={classes.navLink}
-            href="https://community.home-assistant.io/u/timmo001/summary"
-            target="_blank">
-            <Icon
-              path={mdiHomeAssistant}
               color={theme.palette.text.primary}
               size={1}
             />
