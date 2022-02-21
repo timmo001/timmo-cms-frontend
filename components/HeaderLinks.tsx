@@ -72,21 +72,6 @@ function HeaderLinks(props: HeaderLinksProps): ReactElement {
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip title="Twitch" classes={{ tooltip: classes.tooltip }}>
-          <Button
-            variant="text"
-            className={classes.navLink}
-            href="https://twitch.tv/timmo001"
-            target="_blank">
-            <Icon
-              path={mdiTwitch}
-              color={theme.palette.text.primary}
-              size={1}
-            />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
         <Tooltip title="Email" classes={{ tooltip: classes.tooltip }}>
           <Button
             variant="text"
