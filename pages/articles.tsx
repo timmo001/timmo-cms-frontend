@@ -22,7 +22,7 @@ import {
   GeneralType,
   HomepageType,
   QueryType,
-} from "../components/Types";
+} from "../lib/types/graphql";
 import ArticlesComponent from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
@@ -45,16 +45,12 @@ function Articles(props: ArticlesProps): ReactElement {
     <Layout
       {...props}
       classes={classes}
-      title={`Page ${page + 1} - ${props.homepage.articles_heading}`}
+      title={`Page ${page + 1} - ${props.homepage.articles}`}
       url={`https://timmo.dev/articles?page=${page}`}>
       <Parallax
         small
         filter
-        image={getApiMediaUrl(
-          props.homepage.header_media
-            ? props.homepage.header_media.url
-            : props.general.header_media?.url
-        )}
+        image={getApiMediaUrl(general.header?.data.attributes.url)}
       />
       <Container
         className={classes.mainRaised}

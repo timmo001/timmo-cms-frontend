@@ -1,0 +1,120 @@
+query Categories {
+  categories {
+    data {
+      id
+      attributes {
+        name
+        header {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              caption
+              url
+              width
+              height
+              mime
+              ext
+              size
+              createdAt
+              updatedAt
+            }
+          }
+        }
+        articles {
+          data {
+            id
+            attributes {
+              title
+              content
+              header {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    caption
+                    url
+                    width
+                    height
+                    mime
+                    ext
+                    size
+                    createdAt
+                    updatedAt
+                  }
+                }
+              }
+              thumbnail {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    caption
+                    url
+                    width
+                    height
+                    mime
+                    ext
+                    size
+                    createdAt
+                    updatedAt
+                  }
+                }
+              }
+              showcase {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    caption
+                    url
+                    width
+                    height
+                    mime
+                    ext
+                    size
+                    createdAt
+                    updatedAt
+                  }
+                }
+              }
+              showcaseSlides
+              category {
+                data {
+                  id
+                  attributes {
+                    name
+                    createdAt
+                    publishedAt
+                    updatedAt
+                  }
+                }
+              }
+              tags {
+                data {
+                  id
+                  attributes {
+                    name
+                    createdAt
+                    publishedAt
+                    updatedAt
+                  }
+                }
+              }
+              createdAt
+              publishedAt
+              updatedAt
+            }
+          }
+        }
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}

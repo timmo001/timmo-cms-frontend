@@ -10,14 +10,14 @@ import {
 } from "@material-ui/core";
 
 import { getApiMediaUrl } from "../lib/api";
-import { MediaType } from "./Types";
+import { MediaAttributes } from "../lib/types/graphql";
 import useStyles from "../assets/jss/components/layout";
 
 interface SliderProps {
   hideCaption?: boolean;
   hidePaper?: boolean;
   hideTitle?: boolean;
-  media: MediaType;
+  media: MediaAttributes;
   showAsImage?: boolean;
 }
 

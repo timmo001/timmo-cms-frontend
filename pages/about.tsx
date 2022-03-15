@@ -16,7 +16,7 @@ import {
   getCategories,
   getGeneral,
 } from "../lib/api";
-import { AboutType, CategoryType, GeneralType } from "../components/Types";
+import { AboutType, CategoryType, GeneralType, GraphQLData } from "../lib/types/graphql";
 import Layout from "../components/Layout";
 import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
@@ -25,28 +25,29 @@ import useStyles from "../assets/jss/components/layout";
 
 export interface AboutProps {
   about: AboutType;
-  categories: CategoryType[];
+  categories: Array<GraphQLData<CategoryType>>;
   general: GeneralType;
 }
 
-function About(props: AboutProps): ReactElement {
+function About({ about, categories, general }: AboutProps): ReactElement {
   const classes = useStyles();
 
   return (
     <Layout
-      {...props}
       classes={classes}
-      description={`About Me - ${props.about.profile_name} - ${props.about.profile_subtitle}`}
+      description={`About Me - ${about.name} - ${about.subtitle}`}
       keywords="Timmo, Aidan Timson, About Me, Bio, Portfolio"
       title="About Me"
-      url="https://timmo.dev/about">
+      url="https://timmo.dev/about"
+      categories={categories}
+      general={general}>
       <Parallax
         small
         filter
         image={getApiMediaUrl(
-          props.about.header_media
-            ? props.about.header_media.url
-            : props.general.header_media?.url
+          about.header
+            ? about.header.data?.attributes.url
+            : general.header.data?.attributes.url
         )}
       />
       <Container
@@ -56,8 +57,8 @@ function About(props: AboutProps): ReactElement {
         <Card className={classes.cardOverflow}>
           <Avatar
             className={classes.profile}
-            alt={props.about.profile_name}
-            src={props.about.profile_media?.url}
+            alt={about.name}
+            src={about.profile?.data.attributes.url}
             style={{
               position: "absolute",
               top: -160,
@@ -66,34 +67,34 @@ function About(props: AboutProps): ReactElement {
           />
           <CardContent className={classes.cardContentOverflow}>
             <Typography component="h2" variant="h3">
-              {props.about.profile_name}
+              {about.name}
             </Typography>
             <Typography component="h3" variant="h5">
-              {props.about.profile_subtitle}
+              {about.subtitle}
             </Typography>
           </CardContent>
         </Card>
         <Card>
           <CardContent>
-            {props.about.updated_at ? (
+            {about.updatedAt ? (
               <Typography variant="subtitle1" color="textSecondary">
                 {"Last updated: "}
-                <Moment format="Do MMMM YYYY">{props.about.updated_at}</Moment>
+                <Moment format="Do MMMM YYYY">{about.updatedAt}</Moment>
               </Typography>
             ) : (
               ""
             )}
             <Typography component="div">
-              <Markdown source={props.about.content} escapeHtml={false} />
+              <Markdown source={about.content} escapeHtml={false} />
             </Typography>
           </CardContent>
         </Card>
-        {props.about.showcase_media.length > 0 ? (
+        {about.showcase.data.length > 0 ? (
           <Card>
             <CardContent>
               <Slider
-                media={props.about.showcase_media}
-                slides={props.about.showcase_slides}
+                media={about.showcase.data}
+                slides={about.showcaseSlides}
               />
             </CardContent>
           </Card>

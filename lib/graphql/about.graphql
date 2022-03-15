@@ -1,0 +1,70 @@
+query About {
+  about {
+    data {
+      id
+      attributes {
+        name
+        subtitle
+        content
+        profile {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              caption
+              url
+              width
+              height
+              mime
+              ext
+              size
+              createdAt
+              updatedAt
+            }
+          }
+        }
+        header {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              caption
+              url
+              width
+              height
+              mime
+              ext
+              size
+              createdAt
+              updatedAt
+            }
+          }
+        }
+        showcase {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              caption
+              url
+              width
+              height
+              mime
+              ext
+              size
+              createdAt
+              updatedAt
+            }
+          }
+        }
+        showcaseSlides
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}

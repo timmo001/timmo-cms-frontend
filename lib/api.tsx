@@ -1,34 +1,48 @@
+import axios from "axios";
+
 import {
   AboutType,
   ArticleType,
   CategoryType,
   GeneralType,
+  GraphQL,
+  GraphQLData,
+  GraphQLResponse,
   HomepageType,
-} from "../components/Types";
+} from "./types/graphql";
+import queryAbout from "./graphql/about.graphql";
+import queryArticles from "./graphql/articles.graphql";
+import queryCategories from "./graphql/categories.graphql";
+import queryGeneral from "./graphql/general.graphql";
+import queryHomepage from "./graphql/homepage.graphql";
 
-async function fetchAPI(
+async function graphQLGet<T>(
+  array: boolean,
+  item: string,
   query: string,
-  props?: { variables: any }
-): Promise<any> {
-  const variables = props?.variables;
+  variables?: { [key: string]: any }
+): Promise<Array<GraphQLData<T>> | T> {
   try {
-    const res = await fetch(`${process.env.API_URL}/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const response = await axios.post<
+      GraphQLResponse<Array<GraphQLData<T>> | GraphQLData<T>>
+    >(
+      `${process.env.API_URL}/graphql`,
+      {
         query,
         variables,
-      }),
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.error(json.errors);
-      throw new Error("Failed to fetch API");
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (array) {
+      const data = response.data.data[item].data as Array<GraphQLData<T>>;
+      if (array) return data;
     }
-
-    return json.data;
+    const data = response.data.data[item].data as GraphQLData<T>;
+    return data.attributes;
   } catch (e) {
     console.error(e);
     throw e;
@@ -45,185 +59,65 @@ export function getApiMediaUrl(url: string): string {
   }${url}`;
 }
 
-export async function getAbout(): Promise<AboutType> {
+export async function getAbout(): Promise<AboutType | null> {
   try {
-    const data = await fetchAPI(`query About {
-      about {
-        id
-        content
-        header_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-        profile_name
-        profile_subtitle
-        profile_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-        showcase_media(sort: "name:asc") {
-          alternativeText
-          caption
-          name
-          url
-        }
-        showcase_slides
-        updated_at
-      }
-    }`);
-    return data.about;
+    return (await graphQLGet<AboutType>(
+      false,
+      "about",
+      queryAbout
+    )) as AboutType;
   } catch (e) {
     return null;
   }
 }
 
-export async function getArticles(): Promise<ArticleType[]> {
+export async function getArticles(): Promise<Array<
+  GraphQLData<ArticleType>
+> | null> {
   try {
-    const data = await fetchAPI(`query Articles {
-      articles(sort: "published_at:desc") {
-        id
-        category {
-          id
-          name
-          updated_at
-        }
-        tags {
-          name
-          color
-        }
-        title
-        content
-        header_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-        thumbnail_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-        showcase_media(sort: "name:asc") {
-          alternativeText
-          caption
-          name
-          url
-        }
-        showcase_slides
-        published_at
-        updated_at
-      }
-    }`);
-    return data.articles;
+    return (await graphQLGet<ArticleType>(
+      true,
+      "articles",
+      queryArticles
+    )) as Array<GraphQLData<ArticleType>>;
   } catch (e) {
     return null;
   }
 }
 
-export async function getCategories(): Promise<CategoryType[]> {
+export async function getCategories(): Promise<Array<
+  GraphQLData<CategoryType>
+> | null> {
   try {
-    const data = await fetchAPI(`query Categories {
-      categories(sort: "name:asc") {
-        id
-        name
-        header_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-        articles(sort: "published_at:desc") {
-          id
-          category {
-            id
-            name
-          }
-          tags {
-            name
-            color
-          }
-          title
-          content
-          header_media {
-            alternativeText
-            caption
-            name
-            url
-          }
-          thumbnail_media {
-            alternativeText
-            caption
-            name
-            url
-          }
-          showcase_media(sort: "name:asc") {
-            alternativeText
-            caption
-            name
-            url
-          }
-          showcase_slides
-          published_at
-          updated_at
-          }
-        updated_at
-      }
-    }`);
-    return data.categories;
+    return (await graphQLGet<CategoryType>(
+      true,
+      "categories",
+      queryCategories
+    )) as Array<GraphQLData<CategoryType>>;
   } catch (e) {
     return null;
   }
 }
 
-export async function getGeneral(): Promise<GeneralType> {
+export async function getGeneral(): Promise<GeneralType | null> {
   try {
-    const data = await fetchAPI(`query General {
-      general {
-        footer_content
-        header_media {
-          alternativeText
-          caption
-          name
-          url
-        }
-      }
-    }`);
-    return data.general;
+    return (await graphQLGet<GeneralType>(
+      false,
+      "general",
+      queryGeneral
+    )) as GeneralType;
   } catch (e) {
     return null;
   }
 }
 
-export async function getHomepage(): Promise<HomepageType> {
+export async function getHomepage(): Promise<HomepageType | null> {
   try {
-    const data = await fetchAPI(`query Homepage {
-    homepage {
-      articles_heading
-      header_media {
-        alternativeText
-        caption
-        name
-        url
-      }
-      showcase_heading
-      showcase_media(sort: "name:asc") {
-        alternativeText
-        caption
-        name
-        url
-      }
-      showcase_slides
-      welcome_message
-      updated_at
-    }
-  }`);
-    return data.homepage;
+    return (await graphQLGet<HomepageType>(
+      false,
+      "homepage",
+      queryHomepage
+    )) as HomepageType;
   } catch (e) {
     return null;
   }

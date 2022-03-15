@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 import Slick from "react-slick";
 
-import { MediaType } from "./Types";
+import { GraphQLData, MediaAttributes } from "../lib/types/graphql";
 import Image from "./Image";
 import useStyles from "../assets/jss/components/layout";
 
 interface SliderProps {
-  media: MediaType[];
+  media: Array<GraphQLData<MediaAttributes>>;
   slides: number;
 }
 
@@ -24,9 +24,9 @@ function Slider(props: SliderProps): ReactElement {
 
   return (
     <Slick className={classes.slider} {...sliderSettings}>
-      {props.media.map((media: MediaType, index: number) => (
-        <div className={classes.sliderMediaContainer} key={index}>
-          <Image media={media} />
+      {props.media.map((media: GraphQLData<MediaAttributes>) => (
+        <div className={classes.sliderMediaContainer} key={media.id}>
+          <Image media={media.attributes} />
         </div>
       ))}
     </Slick>

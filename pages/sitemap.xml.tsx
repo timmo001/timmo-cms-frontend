@@ -2,7 +2,7 @@ import { getAbout, getArticles, getCategories, getHomepage } from "../lib/api";
 
 interface PageType {
   path: string;
-  updated: string;
+  updated?: Date;
 }
 
 const generateSitemap = (pages: PageType[], origin: string): string => {
@@ -31,18 +31,18 @@ export async function getServerSideProps({
   const homepage = await getHomepage();
 
   const data: PageType[] = [];
-  data.push({ path: "", updated: homepage.updated_at });
-  data.push({ path: "/about", updated: about.updated_at });
+  data.push({ path: "", updated: homepage?.updatedAt });
+  data.push({ path: "/about", updated: about?.updatedAt });
   articles.forEach((article) =>
     data.push({
       path: `/article?id=${article.id}`,
-      updated: article.updated_at,
+      updated: article.attributes.updatedAt,
     })
   );
   categories.forEach((category) =>
     data.push({
       path: `/category?id=${category.id}`,
-      updated: category.updated_at,
+      updated: category.attributes.updatedAt,
     })
   );
 

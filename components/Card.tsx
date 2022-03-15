@@ -11,11 +11,11 @@ import {
 } from "@material-ui/core";
 
 import { getApiMediaUrl } from "../lib/api";
-import { ArticleType, TagType } from "./Types";
+import { ArticleType, GraphQLData, TagType } from "../lib/types/graphql";
 import useStyles from "../assets/jss/components/card";
 
 interface CardProps {
-  article: ArticleType;
+  article: GraphQLData<ArticleType>;
 }
 
 function Card({ article }: CardProps): ReactElement {
@@ -27,32 +27,38 @@ function Card({ article }: CardProps): ReactElement {
         <MuiCard className={classes.card} elevation={2} square={false}>
           <CardMedia
             className={classes.media}
-            image={getApiMediaUrl(article.thumbnail_media?.url)}
-            title={article.thumbnail_media?.alternativeText}
+            image={getApiMediaUrl(
+              article.attributes.thumbnail.data?.attributes?.url
+            )}
+            title={
+              article.attributes.thumbnail.data?.attributes?.alternativeText
+            }
           />
           <CardContent>
             <Typography color="textSecondary" component="span" variant="button">
-              {article.category?.name}
+              {article.attributes.category.data?.attributes.name}
             </Typography>
             <Typography color="primary" component="h3" variant="h4">
-              {article.title}
+              {article.attributes.title}
             </Typography>
-            {article.published_at ? (
+            {article.attributes.publishedAt ? (
               <Typography
                 color="textSecondary"
                 component="span"
                 variant="subtitle1">
-                <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+                <Moment format="Do MMMM YYYY">
+                  {article.attributes.publishedAt}
+                </Moment>
               </Typography>
             ) : (
               ""
             )}
             <Typography component="div">
-              {article.tags.map((tag: TagType, index: number) => (
+              {article.attributes.tags.data.map((tag: GraphQLData<TagType>) => (
                 <Chip
-                  key={index}
-                  label={tag.name}
-                  style={{ backgroundColor: tag.color }}
+                  key={tag.id}
+                  label={tag.attributes.name}
+                  style={{ backgroundColor: tag.attributes.color }}
                 />
               ))}
             </Typography>
