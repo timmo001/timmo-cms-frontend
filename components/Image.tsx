@@ -17,7 +17,7 @@ interface SliderProps {
   hideCaption?: boolean;
   hidePaper?: boolean;
   hideTitle?: boolean;
-  media: MediaAttributes;
+  media: Partial<MediaAttributes>;
   showAsImage?: boolean;
 }
 
