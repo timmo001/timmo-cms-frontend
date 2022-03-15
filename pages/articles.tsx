@@ -20,33 +20,48 @@ import {
   ArticleType,
   CategoryType,
   GeneralType,
+  GraphQLData,
   HomepageType,
-  QueryType,
 } from "../lib/types/graphql";
 import ArticlesComponent from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import useStyles from "../assets/jss/components/layout";
 
-export interface ArticlesProps {
-  articles: ArticleType[];
-  categories: CategoryType[];
+interface QueryType {
+  page: string;
+}
+
+interface ArticlesInitialProps {
+  query: QueryType;
+}
+
+interface ArticlesProps {
+  articles: Array<GraphQLData<ArticleType>>;
+  categories: Array<GraphQLData<CategoryType>>;
   general: GeneralType;
   homepage: HomepageType;
   query: QueryType;
 }
 
-function Articles(props: ArticlesProps): ReactElement {
-  const page: number = Number(props.query.page) || 0;
+function Articles({
+  articles,
+  categories,
+  general,
+  homepage,
+  query,
+}: ArticlesProps): ReactElement {
+  const page: number = Number(query.page) || 0;
   const startFrom: number = page * 9;
 
   const classes = useStyles();
   return (
     <Layout
-      {...props}
       classes={classes}
-      title={`Page ${page + 1} - ${props.homepage.articles}`}
-      url={`https://timmo.dev/articles?page=${page}`}>
+      title={`Page ${page + 1} - Articles`}
+      url={`https://timmo.dev/articles?page=${page}`}
+      categories={categories}
+      general={general}>
       <Parallax
         small
         filter
@@ -59,13 +74,13 @@ function Articles(props: ArticlesProps): ReactElement {
         <Card>
           <CardContent>
             <Typography align="center" variant="h3">
-              {props.homepage.articles_heading}
+              Articles
             </Typography>
             <Typography align="center" component="h4" variant="h5" gutterBottom>
               Page {page + 1}
             </Typography>
             <ArticlesComponent
-              articles={props.articles.slice(startFrom, startFrom + 9)}
+              articles={articles.slice(startFrom, startFrom + 9)}
             />
           </CardContent>
           <CardActions>
@@ -81,7 +96,7 @@ function Articles(props: ArticlesProps): ReactElement {
             <div className={classes.flex} />
             <Link href={{ pathname: "/articles", query: { page: page + 1 } }}>
               <Button
-                disabled={props.articles.length <= startFrom + 9}
+                disabled={articles.length <= startFrom + 9}
                 color="primary"
                 size="large"
                 variant="text">
@@ -95,7 +110,7 @@ function Articles(props: ArticlesProps): ReactElement {
   );
 }
 
-Articles.getInitialProps = async ({ query }) => {
+Articles.getInitialProps = async ({ query }: ArticlesInitialProps) => {
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
