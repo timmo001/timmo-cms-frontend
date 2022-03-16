@@ -26,8 +26,8 @@ interface ChangeColorOnScroll {
 interface HeaderProps {
   absolute?: string;
   brand?: string;
-  changeColorOnScroll?: ChangeColorOnScroll;
-  color?: ColorExpanded;
+  changeColorOnScroll: ChangeColorOnScroll;
+  color: ColorExpanded;
   fixed?: boolean;
   rightLinks?: ReactElement;
 }

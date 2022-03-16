@@ -1,0 +1,31 @@
+query General {
+  general {
+    data {
+      id
+      attributes {
+        header {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              caption
+              url
+              width
+              height
+              mime
+              ext
+              size
+              createdAt
+              updatedAt
+            }
+          }
+        }
+        footer
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}

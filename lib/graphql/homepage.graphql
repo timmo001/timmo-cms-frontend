@@ -1,0 +1,14 @@
+query Homepage {
+  homepage {
+    data {
+      id
+      attributes {
+        heading
+        subheading
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}

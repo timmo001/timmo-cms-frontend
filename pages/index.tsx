@@ -24,50 +24,54 @@ import {
   ArticleType,
   CategoryType,
   GeneralType,
+  GraphQLData,
   HomepageType,
-} from "../components/Types";
+} from "../lib/types/graphql";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
-import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 import ErrorLayout from "../components/ErrorLayout";
 
 interface HomeProps {
   about: AboutType;
-  articles: ArticleType[];
-  categories: CategoryType[];
+  articles: Array<GraphQLData<ArticleType>>;
+  categories: Array<GraphQLData<CategoryType>>;
   general: GeneralType;
   homepage: HomepageType;
 }
 
-function Home(props: HomeProps): ReactElement {
+function Home({
+  about,
+  articles,
+  categories,
+  general,
+  homepage,
+}: HomeProps): ReactElement {
   const classes = useStyles();
 
-  if (!props.about) return <ErrorLayout classes={classes} />;
+  if (!about || !articles || !categories || !general || !homepage)
+    return <ErrorLayout classes={classes} />;
 
   return (
     <Layout
-      {...props}
       classes={classes}
       title="Home"
       url="https://timmo.dev"
-      description={`${props.about.profile_name} - ${props.about.profile_subtitle}`}>
+      description={`${about.name} - ${about.subtitle}`}
+      categories={categories}
+      general={general}>
       <Parallax
         small
         filter
-        image={getApiMediaUrl(
-          props.homepage.header_media
-            ? props.homepage.header_media.url
-            : props.general.header_media?.url
-        )}
+        image={getApiMediaUrl(general.header?.data.attributes.url)}
       />
       <Container
         className={classes.mainRaised}
         component="article"
         maxWidth="xl">
-        {props.homepage.welcome_message ? (
+        {homepage.subheading ? (
           <Card>
             <CardContent>
               <Typography
@@ -76,35 +80,8 @@ function Home(props: HomeProps): ReactElement {
                 color="textPrimary"
                 component="div"
                 variant="h4">
-                <Markdown
-                  source={props.homepage.welcome_message}
-                  escapeHtml={false}
-                />
+                <Markdown source={homepage.subheading} escapeHtml={false} />
               </Typography>
-            </CardContent>
-          </Card>
-        ) : (
-          ""
-        )}
-        {props.homepage.showcase_media.length > 0 ? (
-          <Card>
-            <CardContent>
-              {props.homepage.showcase_heading ? (
-                <Typography
-                  className={classes.title}
-                  align="center"
-                  color="textPrimary"
-                  variant="h3"
-                  gutterBottom>
-                  {props.homepage.showcase_heading}
-                </Typography>
-              ) : (
-                ""
-              )}
-              <Slider
-                media={props.homepage.showcase_media}
-                slides={props.homepage.showcase_slides}
-              />
             </CardContent>
           </Card>
         ) : (
@@ -113,14 +90,14 @@ function Home(props: HomeProps): ReactElement {
         <Card>
           <CardContent>
             <Typography align="center" variant="h3" gutterBottom>
-              {props.homepage.articles_heading}
+              {homepage.heading}
             </Typography>
-            <Articles articles={props.articles.slice(0, 9)} />
+            <Articles articles={articles.slice(0, 9)} />
           </CardContent>
           <CardActions>
             <Link href={{ pathname: "/articles", query: { page: 1 } }}>
               <Button
-                disabled={props.articles.length <= 9}
+                disabled={articles.length <= 9}
                 color="primary"
                 size="large"
                 variant="text">

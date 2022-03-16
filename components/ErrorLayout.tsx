@@ -16,7 +16,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { CategoryType, GeneralType } from "./Types";
+import { CategoryType, GeneralType } from "../lib/types/graphql";
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
 import Markdown from "./Markdown";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import Moment from "react-moment";
 import {
   Card,
@@ -19,36 +19,53 @@ import {
   ArticleType,
   CategoryType,
   GeneralType,
-  QueryType,
+  GraphQLData,
   TagType,
-} from "../components/Types";
+} from "../lib/types/graphql";
 import Layout from "../components/Layout";
 import Markdown from "../components/Markdown";
 import Parallax from "../components/Parallax";
 import Slider from "../components/Slider";
 import useStyles from "../assets/jss/components/layout";
 
-export interface ArticleProps {
-  articles: ArticleType[];
-  categories: CategoryType[];
+interface QueryType {
+  id: string;
+}
+
+interface ArticleInitialProps {
+  query: QueryType;
+}
+
+interface ArticleProps {
+  articles: Array<GraphQLData<ArticleType>>;
+  categories: Array<GraphQLData<CategoryType>>;
   general: GeneralType;
   query: QueryType;
 }
 
-function Article(props: ArticleProps): ReactElement {
-  const article: ArticleType = props.articles.find(
-    (article) => article.id === props.query.id
+function Article({
+  articles,
+  categories,
+  general,
+  query,
+}: ArticleProps): ReactElement {
+  const article = useMemo<GraphQLData<ArticleType> | undefined>(
+    () =>
+      articles.find(
+        (article: GraphQLData<ArticleType>) => article.id === query.id
+      ),
+    [articles, query]
   );
 
   const classes = useStyles();
 
   if (!article)
     return (
-      <Layout {...props} classes={classes}>
+      <Layout classes={classes} categories={categories} general={general}>
         <Parallax
           small
           filter
-          image={getApiMediaUrl(props.general.header_media?.url)}
+          image={getApiMediaUrl(general.header.data?.attributes.url)}
         />
         <Container
           className={classes.mainRaised}
@@ -67,19 +84,24 @@ function Article(props: ArticleProps): ReactElement {
 
   return (
     <Layout
-      {...props}
       classes={classes}
-      description={`${article.title} - ${article.content.split("\n")[0]}`}
-      keywords={article.tags.map((tag: TagType) => tag.name).join(", ")}
-      title={article.title}
-      url={`https://timmo.dev/article?id=${article.id}`}>
+      description={`${article.attributes.title} - ${
+        article.attributes.content.split("\n")[0]
+      }`}
+      keywords={article.attributes.tags.data
+        .map(({ attributes }: GraphQLData<TagType>) => attributes.name)
+        .join(", ")}
+      title={article.attributes.title}
+      url={`https://timmo.dev/article?id=${article.id}`}
+      categories={categories}
+      general={general}>
       <Parallax
         small
         filter
         image={getApiMediaUrl(
-          article.header_media
-            ? article.header_media.url
-            : props.general.header_media?.url
+          article.attributes.header
+            ? article.attributes.header.data?.attributes.url
+            : general.header.data?.attributes.url
         )}
       />
       <Container
@@ -89,26 +111,31 @@ function Article(props: ArticleProps): ReactElement {
         <Card>
           <CardContent>
             <Typography component="h1" variant="h3">
-              {article.title}
+              {article.attributes.title}
             </Typography>
-            {article.published_at ? (
+            {article.attributes.publishedAt ? (
               <Typography variant="subtitle1" color="textSecondary">
-                <Moment format="Do MMMM YYYY">{article.published_at}</Moment>
+                <Moment format="Do MMMM YYYY">
+                  {article.attributes.publishedAt}
+                </Moment>
               </Typography>
             ) : (
               ""
             )}
             <Typography component="div" gutterBottom>
-              {article.tags.map((tag: TagType, index: number) => (
-                <Chip
-                  key={index}
-                  label={tag.name}
-                  style={{ backgroundColor: tag.color }}
-                />
-              ))}
+              {article.attributes.tags.data.map(
+                ({ id, attributes }: GraphQLData<TagType>) => (
+                  <Chip
+                    key={id}
+                    label={attributes.name}
+                    style={{ backgroundColor: attributes.color }}
+                  />
+                )
+              )}
             </Typography>
-            {article.tags.findIndex((tag: TagType) =>
-              tag.name.includes("WIP")
+            {article.attributes.tags.data.findIndex(
+              ({ attributes }: GraphQLData<TagType>) =>
+                attributes.name.includes("WIP")
             ) > -1 ? (
               <Alert
                 className={classes.alert}
@@ -121,16 +148,19 @@ function Article(props: ArticleProps): ReactElement {
               ""
             )}
             <Typography component="div">
-              <Markdown source={article.content} escapeHtml={false} />
+              <Markdown
+                source={article.attributes.content}
+                escapeHtml={false}
+              />
             </Typography>
           </CardContent>
         </Card>
-        {article.showcase_media.length > 0 ? (
+        {article.attributes.showcase.data.length > 0 ? (
           <Card>
             <CardContent>
               <Slider
-                media={article.showcase_media}
-                slides={article.showcase_slides}
+                media={article.attributes.showcase.data}
+                slides={article.attributes.showcaseSlides}
               />
             </CardContent>
           </Card>
@@ -142,7 +172,7 @@ function Article(props: ArticleProps): ReactElement {
   );
 }
 
-Article.getInitialProps = async ({ query }) => {
+Article.getInitialProps = async ({ query }: ArticleInitialProps) => {
   const articles = (await getArticles()) || [];
   const categories = (await getCategories()) || [];
   const general = await getGeneral();

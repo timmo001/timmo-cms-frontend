@@ -4,21 +4,16 @@ import clsx from "clsx";
 import { useTheme } from "@material-ui/core/styles";
 import { Button, List, ListItem, Tooltip } from "@material-ui/core";
 import Icon from "@mdi/react";
-import {
-  mdiEmail,
-  mdiGithub,
-  mdiTwitch,
-  mdiTwitter,
-} from "@mdi/js";
+import { mdiEmail, mdiGithub, mdiTwitter } from "@mdi/js";
 
-import { CategoryType } from "./Types";
+import { CategoryType, GraphQLData } from "../lib/types/graphql";
 import useStyles from "../assets/jss/components/headerLinks";
 
 interface HeaderLinksProps {
-  categories: CategoryType[];
+  categories: Array<GraphQLData<CategoryType>>;
 }
 
-function HeaderLinks(props: HeaderLinksProps): ReactElement {
+function HeaderLinks({ categories }: HeaderLinksProps): ReactElement {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -31,15 +26,17 @@ function HeaderLinks(props: HeaderLinksProps): ReactElement {
         </Link>
       </ListItem>
       <ListItem className={clsx(classes.listItem, classes.divider)} />
-      {props.categories.map(({ id, name }: CategoryType, index: number) => (
-        <ListItem key={index} className={classes.listItem}>
-          <Link href={{ pathname: "/category", query: { id } }}>
-            <Button variant="text" className={classes.navLink}>
-              <span className={classes.listItemText}>{name}</span>
-            </Button>
-          </Link>
-        </ListItem>
-      ))}
+      {categories.map(
+        ({ id, attributes }: GraphQLData<CategoryType>, index: number) => (
+          <ListItem key={index} className={classes.listItem}>
+            <Link href={{ pathname: "/category", query: { id } }}>
+              <Button variant="text" className={classes.navLink}>
+                <span className={classes.listItemText}>{attributes.name}</span>
+              </Button>
+            </Link>
+          </ListItem>
+        )
+      )}
       <ListItem className={clsx(classes.listItem, classes.divider)} />
       <ListItem className={classes.listItem}>
         <Tooltip title="GitHub" classes={{ tooltip: classes.tooltip }}>

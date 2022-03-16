@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import Link from "next/link";
 import {
   Button,
@@ -9,35 +9,46 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { CategoryType, GeneralType, GraphQLData } from "../lib/types/graphql";
 import { getApiMediaUrl, getCategories, getGeneral } from "../lib/api";
-import { CategoryType, GeneralType, QueryType } from "../components/Types";
 import Articles from "../components/Articles";
 import Layout from "../components/Layout";
 import Parallax from "../components/Parallax";
 import useStyles from "../assets/jss/components/layout";
 
-export interface ArticlesProps {
-  categories: CategoryType[];
+interface QueryType {
+  id: string;
+  page: string;
+}
+
+interface CategoryInitialProps {
+  query: QueryType;
+}
+
+interface ArticlesProps {
+  categories: Array<GraphQLData<CategoryType>>;
   general: GeneralType;
   query: QueryType;
 }
 
-function Category(props: ArticlesProps): ReactElement {
-  const category = props.categories.find(
-    (category) => category.id === props.query.id
+function Category({ categories, general, query }: ArticlesProps): ReactElement {
+  const category = useMemo<GraphQLData<CategoryType> | undefined>(
+    () => categories.find((category) => category.id === query.id),
+    [categories, query]
   );
-  const page: number = Number(props.query.page) || 0;
+
+  const page: number = Number(query.page) || 0;
   const startFrom: number = page * 9;
 
   const classes = useStyles();
 
   if (!category)
     return (
-      <Layout {...props} classes={classes}>
+      <Layout classes={classes} categories={categories} general={general}>
         <Parallax
           small
           filter
-          image={getApiMediaUrl(props.general.header_media?.url)}
+          image={getApiMediaUrl(general.header.data?.attributes.url)}
         />
         <Container
           className={classes.mainRaised}
@@ -56,17 +67,18 @@ function Category(props: ArticlesProps): ReactElement {
 
   return (
     <Layout
-      {...props}
       classes={classes}
-      title={category.name}
-      url={`https://timmo.dev/category?id=${category.id}`}>
+      title={category.attributes.name}
+      url={`https://timmo.dev/category?id=${category.id}`}
+      categories={categories}
+      general={general}>
       <Parallax
         small
         filter
         image={getApiMediaUrl(
-          category.header_media
-            ? category.header_media.url
-            : props.general.header_media?.url
+          category.attributes.header
+            ? category.attributes.header.data?.attributes.url
+            : general.header.data?.attributes.url
         )}
       />
       <Container
@@ -76,13 +88,16 @@ function Category(props: ArticlesProps): ReactElement {
         <Card>
           <CardContent>
             <Typography align="center" component="h1" variant="h3">
-              {category.name}
+              {category.attributes.name}
             </Typography>
             <Typography align="center" component="h4" variant="h5" gutterBottom>
               Page {page + 1}
             </Typography>
             <Articles
-              articles={category.articles.slice(startFrom, startFrom + 9)}
+              articles={category.attributes.articles.data.slice(
+                startFrom,
+                startFrom + 9
+              )}
             />
           </CardContent>
           <CardActions>
@@ -106,7 +121,9 @@ function Category(props: ArticlesProps): ReactElement {
                 query: { id: category.id, page: page + 1 },
               }}>
               <Button
-                disabled={category.articles.length <= startFrom + 9}
+                disabled={
+                  category.attributes.articles.data.length <= startFrom + 9
+                }
                 color="primary"
                 size="large"
                 variant="text">
@@ -120,7 +137,7 @@ function Category(props: ArticlesProps): ReactElement {
   );
 }
 
-Category.getInitialProps = async ({ query }) => {
+Category.getInitialProps = async ({ query }: CategoryInitialProps) => {
   const categories = (await getCategories()) || [];
   const general = await getGeneral();
   return { categories, general, query };

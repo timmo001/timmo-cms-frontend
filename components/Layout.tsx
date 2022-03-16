@@ -2,11 +2,7 @@ import React, { ReactElement } from "react";
 import Head from "next/head";
 import { teal, indigo } from "@material-ui/core/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import {
-  createMuiTheme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 import { ClassNameMap } from "@material-ui/styles";
 import {
   Card,
@@ -15,13 +11,14 @@ import {
   NoSsr,
   Typography,
 } from "@material-ui/core";
+import { createTheme } from "@material-ui/core/styles";
 
-import { CategoryType, GeneralType } from "./Types";
+import { CategoryType, GeneralType, GraphQLData } from "../lib/types/graphql";
 import Header from "./Header";
 import HeaderLinks from "./HeaderLinks";
 import Markdown from "./Markdown";
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     type: "dark",
     primary: teal,
@@ -58,8 +55,8 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme);
 
 interface LayoutProps {
-  categories: CategoryType[];
-  children?: ReactElement[];
+  categories: Array<GraphQLData<CategoryType>>;
+  children?: Array<ReactElement>;
   classes: ClassNameMap;
   description?: string;
   general: GeneralType;
@@ -68,13 +65,20 @@ interface LayoutProps {
   url?: string;
 }
 
-function Layout(props: LayoutProps): ReactElement {
-  const classes = props.classes;
-
+function Layout({
+  categories,
+  children,
+  classes,
+  description,
+  general,
+  keywords,
+  title,
+  url,
+}: LayoutProps): ReactElement {
   return (
     <>
       <Head>
-        <title>{props.title ? `${props.title} - Timmo` : `Timmo`}</title>
+        <title>{title ? `${title} - Timmo` : `Timmo`}</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -94,21 +98,21 @@ function Layout(props: LayoutProps): ReactElement {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#009688" />
-        <link rel="canonical" href={props.url} />
+        <link rel="canonical" href={url} />
         <meta name="author" content="Aidan Timson" />
         <meta
           name="description"
           content={
-            props.description
-              ? `${props.description}`
-              : props.title
-              ? `${props.title} - Timmo`
+            description
+              ? `${description}`
+              : title
+              ? `${title} - Timmo`
               : `Timmo`
           }
         />
         <meta
           name="keywords"
-          content={props.keywords ? `${props.keywords}` : `timmo, developer`}
+          content={keywords ? `${keywords}` : `timmo, developer`}
         />
         <meta name="msapplication-TileColor" content="#009688" />
         <meta name="theme-color" content="#009688" />
@@ -118,7 +122,6 @@ function Layout(props: LayoutProps): ReactElement {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Header
-            {...props}
             brand="Timmo"
             changeColorOnScroll={{
               height: 200,
@@ -126,10 +129,10 @@ function Layout(props: LayoutProps): ReactElement {
             }}
             color="transparent"
             fixed
-            rightLinks={<HeaderLinks {...props} />}
+            rightLinks={<HeaderLinks categories={categories} />}
           />
-          {props.children}
-          {props.general.footer_content ? (
+          {children}
+          {general.footer ? (
             <Container
               className={classes.footer}
               component="footer"
@@ -137,10 +140,7 @@ function Layout(props: LayoutProps): ReactElement {
               <Card>
                 <CardContent>
                   <Typography component="div">
-                    <Markdown
-                      source={props.general.footer_content}
-                      escapeHtml={false}
-                    />
+                    <Markdown source={general.footer} escapeHtml={false} />
                   </Typography>
                 </CardContent>
               </Card>
