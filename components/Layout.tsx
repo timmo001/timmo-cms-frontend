@@ -134,7 +134,7 @@ function Layout({
       <NoSsr>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
+            <CssBaseline enableColorScheme />
             <Header
               brand="Timmo"
               changeColorOnScroll={{
