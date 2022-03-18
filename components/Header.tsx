@@ -11,8 +11,8 @@ import {
   PropTypes,
   Toolbar,
   Typography,
-} from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+} from "@mui/material";
+import { Menu } from "@mui/icons-material";
 
 import useStyles from "../assets/jss/components/header";
 
@@ -93,14 +93,15 @@ function Header(props: HeaderProps): ReactElement {
               </Typography>
             </Button>
           </Link>
-          <Hidden smDown implementation="css">
+          <Hidden mdDown implementation="css">
             {rightLinks}
           </Hidden>
           <Hidden mdUp>
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerToggle}>
+              onClick={handleDrawerToggle}
+              size="large">
               <Menu />
             </IconButton>
           </Hidden>

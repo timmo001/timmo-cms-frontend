@@ -9,12 +9,14 @@
     "start:dev": "next dev"
   },
   "dependencies": {
-    "@material-ui/core": "4.12.3",
-    "@material-ui/icons": "4.11.2",
-    "@material-ui/lab": "4.0.0-alpha.60",
-    "@material-ui/styles": "4.11.4",
+    "@emotion/react": "11.8.2",
+    "@emotion/styled": "11.8.1",
     "@mdi/js": "6.5.95",
     "@mdi/react": "1.5.0",
+    "@mui/icons-material": "5.5.1",
+    "@mui/lab": "5.0.0-alpha.73",
+    "@mui/material": "5.5.1",
+    "@mui/styles": "5.5.1",
     "axios": "0.26.1",
     "clsx": "1.1.1",
     "fontsource-roboto": "4.0.0",

@@ -7,7 +7,7 @@ import {
   CardContent,
   Container,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { CategoryType, GeneralType, GraphQLData } from "../lib/types/graphql";
 import { getApiMediaUrl, getCategories, getGeneral } from "../lib/api";

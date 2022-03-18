@@ -8,7 +8,7 @@ import {
   CardMedia,
   Chip,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { getApiMediaUrl } from "../lib/api";
 import { ArticleType, GraphQLData, TagType } from "../lib/types/graphql";

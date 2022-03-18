@@ -1,8 +1,8 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
-const layoutStyle = makeStyles((theme: Theme) => ({
+const layoutStyle = makeStyles(() => ({
   alert: {
-    marginTop: theme.spacing(2),
+    marginTop: 16,
   },
   cardOverflow: {
     overflow: "visible",
@@ -35,10 +35,10 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     marginTop: 16,
   },
   slider: {
-    margin: theme.spacing(4, 2),
+    margin: "32px 16px",
   },
   sliderMediaContainer: {
-    padding: theme.spacing(1),
+    padding: 8,
   },
   sliderMedia: {
     height: 420,
@@ -56,10 +56,10 @@ const layoutStyle = makeStyles((theme: Theme) => ({
     backgroundSize: "contain",
   },
   welcomeMessage: {
-    margin: theme.spacing(2, 1),
+    margin: "16px 8px",
   },
   title: {
-    marginTop: theme.spacing(2),
+    marginTop: "16px",
   },
   flex: { flex: 1 },
 }));
