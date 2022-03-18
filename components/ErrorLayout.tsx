@@ -13,9 +13,7 @@ import {
 import { ClassNameMap } from "@mui/styles";
 import { Card, CardContent, Container, NoSsr, Typography } from "@mui/material";
 
-import { CategoryType, GeneralType } from "../lib/types/graphql";
 import Header from "./Header";
-import HeaderLinks from "./HeaderLinks";
 import Markdown from "./Markdown";
 import Parallax from "./Parallax";
 

@@ -1,5 +1,5 @@
 import { Theme } from "@mui/material/styles";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "@mui/styles";
 
 const parallaxStyle = makeStyles((_theme: Theme) => ({
   parallax: {
