@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { getApiMediaUrl } from "../lib/api";
 import { MediaAttributes } from "../lib/types/graphql";

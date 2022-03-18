@@ -6,8 +6,8 @@ import {
   Chip,
   Container,
   Typography,
-} from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+} from "@mui/material";
+import { Alert } from '@mui/material';
 
 import {
   getApiMediaUrl,

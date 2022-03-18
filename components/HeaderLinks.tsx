@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { useTheme } from "@material-ui/core/styles";
-import { Button, List, ListItem, Tooltip } from "@material-ui/core";
+import { useTheme } from "@mui/material/styles";
+import { Button, List, ListItem, Tooltip } from "@mui/material";
 import Icon from "@mdi/react";
 import { mdiEmail, mdiGithub, mdiTwitter } from "@mdi/js";
 
