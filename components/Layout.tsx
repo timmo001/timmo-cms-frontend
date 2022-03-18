@@ -23,22 +23,24 @@ declare module "@mui/styles/defaultTheme" {
   interface DefaultTheme extends Theme {}
 }
 
-let theme = createTheme(
-  adaptV4Theme({
-    palette: {
-      mode: "dark",
-      primary: teal,
-      secondary: indigo,
-      contrastThreshold: 3,
-      tonalOffset: 0.2,
-    },
-    overrides: {
-      MuiCard: {
+let theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: teal,
+    secondary: indigo,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
         root: {
           margin: 8,
         },
       },
-      MuiCardContent: {
+    },
+    MuiCardContent: {
+      styleOverrides: {
         root: {
           padding: "24px 32px",
           "&:last-child": {
@@ -46,19 +48,23 @@ let theme = createTheme(
           },
         },
       },
-      MuiChip: {
+    },
+    MuiChip: {
+      styleOverrides: {
         root: {
           margin: 4,
         },
       },
-      MuiCardActions: {
+    },
+    MuiCardActions: {
+      styleOverrides: {
         root: {
           justifyContent: "flex-end",
         },
       },
     },
-  })
-);
+  },
+});
 theme = responsiveFontSizes(theme);
 
 interface LayoutProps {
