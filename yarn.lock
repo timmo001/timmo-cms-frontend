@@ -191,10 +191,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@mdi/js@6.6.95":
-  version "6.6.95"
-  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-6.6.95.tgz#c4cfe586b75e5cb3185169c60d30aa5e86e60cb1"
-  integrity sha512-w5BZHSwI91YeRmWPqrQWz9RFavyzazkoo5DCMN9NQ2eQy634D2KtH7jFnR64Jd1Iuf5qXA9DR3slXVRNVmKvaA==
+"@mdi/js@6.6.96":
+  version "6.6.96"
+  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-6.6.96.tgz#119f79fa9327359421167a7d4b8bde26e84702ce"
+  integrity sha512-ke9PN5DjPCOlMfhioxeZYADz8Yiz6v47W0IYRza01SSJD7y1EwESVpwFnnFUso+eCoWtE1CO9cTIvQF6sEreuA==
 
 "@mdi/react@1.5.0":
   version "1.5.0"
