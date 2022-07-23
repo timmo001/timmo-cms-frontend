@@ -20,12 +20,12 @@
     "axios": "0.27.2",
     "clsx": "1.2.1",
     "fontsource-roboto": "4.0.0",
-    "moment": "2.29.1",
+    "moment": "2.29.4",
     "next": "12.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "5.0.3",
-    "react-moment": "1.1.1",
+    "react-moment": "1.1.2",
     "react-slick": "0.28.1",
     "react-syntax-highlighter": "15.4.5",
     "slick-carousel": "1.8.1"
@@ -36,9 +36,9 @@
     "@types/react": "17.0.43",
     "@types/react-slick": "0.23.8",
     "@types/react-syntax-highlighter": "13.5.2",
-    "globby": "13.1.1",
-    "prettier": "2.6.1",
+    "globby": "13.1.2",
+    "prettier": "2.7.1",
     "raw-loader": "4.0.2",
-    "typescript": "4.6.3"
+    "typescript": "4.7.4"
   }
 }
